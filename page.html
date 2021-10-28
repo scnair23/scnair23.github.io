@@ -334,19 +334,47 @@ body {
   
   </div>
 
-  <div class="modal">
+  <div id="noel"class="modal">
 
     <!-- Modal content id 3-->
     <div class="modal-content">
       <span class="close">×</span>
       <center>
       <h1>You got it!</h1>
+      <p>I was pleasantly surprised when I realized this mug, expertly hidden in a little Bath and Body works bag, was meant as a Christmas gift for me! Thanks a ton! I use it everyday!</p>
+      <img src="pics/noel.JPG" alt="PP+CR7" width="270" height="430">
+      </center> 
+    </div>
+  
+  </div>
+  <div id="anup"class="modal">
+
+    <!-- Modal content id 4-->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <center>
+      <h1>You got it!</h1>
+      <p>In one breath, he shattered my theory about my hair shooting out... I will never forget that.</p>
+      <img src="pics/anup.jpeg" alt="PP+CR7" width="500" height="250">
+      </center> 
+    </div>
+  
+  </div>
+
+  <div class="modal">
+
+    <!-- Modal content id 5 -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <center>
+      <h1>You have it!</h1>
       <p>You got it!</p>
       <img src="image.jpeg" alt="PP+CR7" width="250" height="250">
       </center> 
     </div>
   
   </div>
+
   <div class="modal">
 
     <!-- Modal content -->
@@ -802,7 +830,7 @@ body {
     var modala5=0;//ac
     var modala6=0;//norah biting me
     var modala7=0;//lid
-    var modala8=0;//noel
+    var modala8=1;//noel
     var modala9=0;//boban
     var modala10=0;//biju
     var modala11=0;//christy
@@ -826,7 +854,7 @@ body {
     var modala29=0;//acer
     var modala30=0;//yir
     var modala31=0;//xerarch
-    var modala32=0;//balding
+    var modala32=1;//balding
 
     var modald1=1;//maple;
     var modald2=0;//candy
@@ -1125,8 +1153,8 @@ body {
             if(modala8)
             {   
                 modala8=0;
-                var modal=document.getElementById("myModal");
-                var span=document.getElementsByClassName("close")[0];
+                var modal=document.getElementsByClassName("modal")[3]
+                var span=document.getElementsByClassName("close")[3];
                 modal.style.display="block";
                 span.onclick= function(){
                     modal.style.display="none";
@@ -1783,8 +1811,8 @@ body {
             if(modala32)
             {   
                 modala32=0;
-                var modal=document.getElementById("myModal");
-                var span=document.getElementsByClassName("close")[0];
+                var modal=document.getElementsByClassName("modal")[4]
+                var span=document.getElementsByClassName("close")[4];
                 modal.style.display="block";
                 span.onclick= function(){
                     modal.style.display="none";
