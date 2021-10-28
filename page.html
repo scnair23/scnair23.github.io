@@ -367,6 +367,20 @@ body {
     <div class="modal-content">
       <span class="close">&times;</span>
       <center>
+      <h1>You got it!</h1>
+      <p>A memorable day!</p>
+      <img src="pics/rio.jpeg" alt="PP+CR7" width="400" height="400">
+      </center> 
+    </div>
+  
+  </div>
+
+  <div class="modal">
+
+    <!-- Modal content id 6 -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <center>
       <h1>You have it!</h1>
       <p>You got it!</p>
       <img src="image.jpeg" alt="PP+CR7" width="250" height="250">
@@ -865,7 +879,7 @@ body {
     var modald7=0;//cot
     var modald8=0;//alibi
     var modald9=0;//manoj
-    var modald10=0;//scenario
+    var modald10=1;//scenario
     var modald11=0;//angrignonparc
     var modald12=0;//il
     var modald13=0;//ice
@@ -969,7 +983,7 @@ body {
             if(modala1)
             {   
                 modala1=0;
-                var modal=document.getElementsByClassName("modal")[0]
+                var modal=document.getElementsByClassName("modal")[0];
                 var span=document.getElementsByClassName("close")[0];
                 modal.style.display="block";
                 span.onclick= function(){
@@ -1018,7 +1032,7 @@ body {
             if(modala3)
             {   
                 modala3=0;
-                var modal=document.getElementsByClassName("modal")[1]
+                var modal=document.getElementsByClassName("modal")[1];
                 var span=document.getElementsByClassName("close")[1];
                 modal.style.display="block";
                 span.onclick= function(){
@@ -1153,7 +1167,7 @@ body {
             if(modala8)
             {   
                 modala8=0;
-                var modal=document.getElementsByClassName("modal")[3]
+                var modal=document.getElementsByClassName("modal")[3];
                 var span=document.getElementsByClassName("close")[3];
                 modal.style.display="block";
                 span.onclick= function(){
@@ -1811,7 +1825,7 @@ body {
             if(modala32)
             {   
                 modala32=0;
-                var modal=document.getElementsByClassName("modal")[4]
+                var modal=document.getElementsByClassName("modal")[4];
                 var span=document.getElementsByClassName("close")[4];
                 modal.style.display="block";
                 span.onclick= function(){
@@ -1839,7 +1853,7 @@ body {
             if(modald1)
             {   
                 modald1=0;
-                var modal=document.getElementsByClassName("modal")[2]
+                var modal=document.getElementsByClassName("modal")[2];
                 var span=document.getElementsByClassName("close")[2];
                 modal.style.display="block";
                 span.onclick= function(){
@@ -2076,8 +2090,8 @@ body {
             if(modald10)
             {   
                 modald10=0;
-                var modal=document.getElementById("myModal");
-                var span=document.getElementsByClassName("close")[0];
+                var modal=document.getElementsByClassName("modal")[5];
+                var span=document.getElementsByClassName("close")[5];
                 modal.style.display="block";
                 span.onclick= function(){
                     modal.style.display="none";
