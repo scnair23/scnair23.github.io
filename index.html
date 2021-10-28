@@ -72,17 +72,19 @@ h2{
     <script>
     var i = 0;
     var timesclicked=0;
-    var txt = new Array(10);
+    var txt = new Array(12);
     txt[0]="Hello stranger from the internet!";
     txt[1]=" You've come to the right place.";
     txt[2]="My name is Sivasankar";
-    txt[3]="...and I made this page for a special person like you";
-    txt[4]="Yes, you are special to me Cathy";
-    txt[5]="Thanks for being my teammate for the past few months!";
-    txt[6]="I have so many great memories of us...";
-    txt[8]="This is just my idea of going through some of those memories in a fun way";
-    txt[7]="Thanks for everything!";
-    txt[9]="Hope you enjoy what follows";
+    txt[3]="...and I made this page for a special person like you.";
+    txt[4]="Yes, you are special to me Cathy!";
+    txt[5]="Thanks for being my teammate for the past few months...";
+    txt[6]="and all the great memories I have of us!";
+    txt[7]="I am overjoyed we have a few more days together!"
+    txt[8]="Looking forward to seeing you again!"
+    txt[9]="This is just my idea of going through some of those memories in a fun way";
+    txt[10]="Thanks for everything!";
+    txt[11]="Hope you enjoy what follows";
     var speed = 50;
     var clear=0;
     
@@ -104,7 +106,7 @@ h2{
     function myfunc()
     {
 
-    if(timesclicked==9)
+    if(timesclicked==11)
     {
         var x = document.getElementById("butt");
         x.innerHTML="Enter!";
@@ -122,7 +124,7 @@ h2{
     function typeWriter() {
       
       
-      if (timesclicked<=10 && i < txt[timesclicked-1].length) {
+      if (timesclicked<=12 && i < txt[timesclicked-1].length) {
       
         document.getElementById("demo").innerHTML += txt[timesclicked-1].charAt(i);
         i++;
