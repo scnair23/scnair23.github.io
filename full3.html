@@ -1,0 +1,2835 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Crossword</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Rubik:wght@300&display=swap" rel="stylesheet">
+</head>
+<style>
+    .button1{
+        border: 1px solid black;
+        background-color: white;    
+        color: black;
+        text-align: center;
+        display: inline-block;
+       
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        position:relative;
+        vertical-align: top;
+        /* position:absolute; */
+        
+    }
+    .button2{
+        border: 1px solid black;
+        background-color: black;    
+        color: black;
+        text-align: center;
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        cursor: context-menu;
+    }
+    .button3{
+        border: 1px solid black;
+        background-color: green;    
+        color: black;
+        text-align: center;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        cursor: context-menu;
+    }
+
+    .cluenumber{
+    position: relative;
+    color: black;
+    text-align: center;
+    display: inline-block;
+    font-size: x-small;
+    width: 0px; 
+    height: 5px;
+    left: -29px;
+    top: -4px;
+    z-index: 2;
+}
+    /* .wrapper span{
+        position:absolute;
+        left: 2px;
+    } */
+    /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(255, 254, 208, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color:#fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    grid-gap: 10px;
+    padding: 50px;
+    background-color: beige;
+    /* position: relative; */
+}
+
+/* .grid-container>div{
+
+} */
+.crossword{
+    grid-column: 1/2;
+    position: relative;
+}
+
+.cluesbg{
+    background-color: rgba(255,255,255,0.2);
+    width: 380px;
+    height: 500px;
+    /* overflow: scroll; */
+}
+
+.clues{
+    background-color: rgba(255,255,255,0.8);
+    width: 350px;
+    height: 450px;
+    overflow: scroll;
+}
+
+.acluetext{
+    background-color:white;
+    text-align: left;
+}
+
+body {
+        font-family: "Roboto", sans-serif;
+      }
+
+</style>
+<body>
+    
+    <h1 style="text-align: center">New Yorker</h1>
+    <p style="text-align: center">Hello world</p>
+
+    <p id="demo">hello</p>
+    <!-- <p id="demo">hello</p>
+    <br/>
+    <p>Status is:</p><p id="status"></p>
+    <br/>
+    <p id="keyp">Key pressed  is:</p>
+    <p id="textd">Text direction is:</p>
+    <p id="gray"></p> -->
+    <div class="grid-container">
+       <center><div class="crossword"><input autofocus onkeyup="myfunc(event,1,1)" onclick="textrev(1,1)" class="button1" maxlength="1" /><span class="cluenumber">1</span><input  onkeyup="myfunc(event,1,2)" onclick="textrev(1,2)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,3)" onclick="textrev(1,3)" class="button1" maxlength="1"/><span class="cluenumber">2</span><input onkeyup="myfunc(event,1,4)" onclick="textrev(1,4)" class="button1" maxlength="1"/><span class="cluenumber">3</span><input onkeyup="myfunc(event,1,5)" onclick="textrev(1,5)" class="button1" maxlength="1"/><span class="cluenumber">4</span><input onkeyup="myfunc(event,1,6)" onclick="textrev(1,6)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,7)" onclick="textrev(1,7)" class="button1" maxlength="1"/><span class="cluenumber">5</span><input onkeyup="myfunc(event,1,8)" onclick="textrev(1,8)" class="button1" maxlength="1"/><span class="cluenumber">6</span><input onkeyup="myfunc(event,1,9)" onclick="textrev(1,9)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,10)" onclick="textrev(1,10)" class="button1" maxlength="1"/><span class="cluenumber">7</span><input onkeyup="myfunc(event,1,11)" onclick="textrev(1,11)" class="button1" maxlength="1"/><span class="cluenumber">8</span><input onkeyup="myfunc(event,1,12)" onclick="textrev(1,12)" class="button1" maxlength="1"/><span class="cluenumber">9</span><input onkeyup="myfunc(event,1,13)" onclick="textrev(1,13)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,14)" onclick="textrev(1,14)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,15)" onclick="textrev(1,15)" class="button1" maxlength="1"/><span class="cluenumber">10</span>
+    
+    <!-- <input onkeyup="myfunc(event,2)" class="button1" type="text" id="l2" maxlength="1"/><input onkeyup="myfunc(event,3)" class="button1" type="text" id="l3" maxlength="1"/> -->
+<!--onkeyup then keycode of c is 67, onkey press then it is 99?!-->
+<br/>
+
+<input onkeyup="myfunc(event,2,1)" onclick="textrev(2,1)" class="button1" maxlength="1" /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,2,3)" onclick="textrev(2,3)" class="button1" maxlength="1"/><span class="cluenumber">11</span><input onkeyup="myfunc(event,2,4)" onclick="textrev(2,4)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,2,5)" onclick="textrev(2,5)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,2,7)" onclick="textrev(2,7)" class="button1" maxlength="1"/><span class="cluenumber">12</span><input onkeyup="myfunc(event,2,8)" onclick="textrev(2,8)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,2,10)" onclick="textrev(2,10)" class="button1" maxlength="1"/><span class="cluenumber">13</span><input onkeyup="myfunc(event,2,11)" onclick="textrev(2,11)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,2,12)" onclick="textrev(2,12)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,2,14)" onclick="textrev(2,14)" class="button1" maxlength="1"/><span class="cluenumber">14</span><input onkeyup="myfunc(event,2,15)" onclick="textrev(2,15)" class="button1" maxlength="1"/>
+<br/>
+
+<input onkeyup="myfunc(event,3,1)" onclick="textrev(3,1)" class="button1" maxlength="1" /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,3,3)" onclick="textrev(3,3)" class="button1" maxlength="1"/><span class="cluenumber">15</span><input onkeyup="myfunc(event,3,4)" onclick="textrev(3,4)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,3,5)" onclick="textrev(3,5)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,3,6)" onclick="textrev(3,6)" class="button1" maxlength="1"/><span class="cluenumber">16</span><input onkeyup="myfunc(event,3,7)" onclick="textrev(3,7)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,3,8)" onclick="textrev(3,8)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,3,9)" onclick="textrev(3,9)" class="button1" maxlength="1"/><span class="cluenumber">17</span><input onkeyup="myfunc(event,3,10)" onclick="textrev(3,10)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,3,11)" onclick="textrev(3,11)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,3,12)" onclick="textrev(3,12)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,3,13)" onclick="textrev(3,13)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,3,14)" onclick="textrev(3,14)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,3,15)" onclick="textrev(3,15)" class="button1" maxlength="1"/>
+<br/>
+<input onkeyup="myfunc(event,4,1)" onclick="textrev(4,1)" class="button1" maxlength="1" /><span class="cluenumber">18</span><input onkeyup="myfunc(event,4,2)" onclick="textrev(4,2)" class="button1" maxlength="1"/><span class="cluenumber">19</span><input onkeyup="myfunc(event,4,3)" onclick="textrev(4,3)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,4,6)" onclick="textrev(4,6)" class="button1" maxlength="1"/><span class="cluenumber">20</span><input onkeyup="myfunc(event,4,7)" onclick="textrev(4,7)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,4,8)" onclick="textrev(4,8)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,4,9)" onclick="textrev(4,9)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,4,11)" onclick="textrev(4,11)" class="button1" maxlength="1"/><span class="cluenumber">21</span><input onkeyup="myfunc(event,4,12)" onclick="textrev(4,12)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,4,13)" onclick="textrev(4,13)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,4,14)" onclick="textrev(4,14)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,4,15)" onclick="textrev(4,15)" class="button1" maxlength="1"/>
+<br/>
+<input onkeyup="myfunc(event,5,1)" onclick="textrev(5,1)" class="button1" maxlength="1" /><input onkeyup="myfunc(event,5,2)" onclick="textrev(5,2)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,5,3)" onclick="textrev(5,3)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,5,4)" onclick="textrev(5,4)" class="button1" maxlength="1"/><span class="cluenumber">22</span><input onkeyup="myfunc(event,5,5)" onclick="textrev(5,5)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,5,6)" onclick="textrev(5,6)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,5,7)" onclick="textrev(5,7)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,5,10)" onclick="textrev(5,10)" class="button1" maxlength="1"/><span class="cluenumber">23</span><input onkeyup="myfunc(event,5,11)" onclick="textrev(5,11)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,5,12)" onclick="textrev(5,12)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,5,13)" onclick="textrev(5,13)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,5,15)" onclick="textrev(5,15)" class="button1" maxlength="1"/>
+<br/>
+<input class="button1 button2" disabled /><input onkeyup="myfunc(event,6,2)" onclick="textrev(6,2)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,6,4)" onclick="textrev(6,4)" class="button1" maxlength="1"/><span class="cluenumber">24</span><input onkeyup="myfunc(event,6,5)" onclick="textrev(6,5)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,6,6)" onclick="textrev(6,6)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,6,7)" onclick="textrev(6,7)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,6,8)" onclick="textrev(6,8)" class="button1" maxlength="1"/><span class="cluenumber">25</span><input onkeyup="myfunc(event,6,9)" onclick="textrev(6,9)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,6,10)" onclick="textrev(6,10)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input class="button1 button2" disabled /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,6,14)" onclick="textrev(6,14)" class="button1" maxlength="1"/><span class="cluenumber">26</span><input onkeyup="myfunc(event,6,15)" onclick="textrev(6,15)" class="button1" maxlength="1"/>
+<br/>
+<input class="button1 button2" disabled /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,7,3)" onclick="textrev(7,3)" class="button1" maxlength="1"/><span class="cluenumber">27</span><input onkeyup="myfunc(event,7,4)" onclick="textrev(7,4)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,7,5)" onclick="textrev(7,5)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,7,6)" onclick="textrev(7,6)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,7,7)" onclick="textrev(7,7)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,7,8)" onclick="textrev(7,8)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,7,11)" onclick="textrev(7,11)" class="button1" maxlength="1"/><span class="cluenumber">28</span><input onkeyup="myfunc(event,7,12)" onclick="textrev(7,12)" class="button1" maxlength="1"/><span class="cluenumber">29</span><input onkeyup="myfunc(event,7,13)" onclick="textrev(7,13)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,7,14)" onclick="textrev(7,14)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,7,15)" onclick="textrev(7,15)" class="button1" maxlength="1"/>
+<br/>
+<input onkeyup="myfunc(event,8,1)" onclick="textrev(8,1)" class="button1" maxlength="1" /><span class="cluenumber">30</span><input onkeyup="myfunc(event,8,2)" onclick="textrev(8,2)" class="button1" maxlength="1"/><span class="cluenumber">31</span><input onkeyup="myfunc(event,8,3)" onclick="textrev(8,3)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,8,4)" onclick="textrev(8,4)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,8,5)" onclick="textrev(8,5)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,8,6)" onclick="textrev(8,6)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,8,7)" onclick="textrev(8,7)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,8,8)" onclick="textrev(8,8)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,8,9)" onclick="textrev(8,9)" class="button1" maxlength="1"/><span class="cluenumber">32</span><input onkeyup="myfunc(event,8,10)" onclick="textrev(8,10)" class="button1" maxlength="1"/><span class="cluenumber">33</span><input class="button1 button2" disabled /><input onkeyup="myfunc(event,8,12)" onclick="textrev(8,12)" class="button1" maxlength="1"/><span class="cluenumber">34</span><input onkeyup="myfunc(event,8,13)" onclick="textrev(8,13)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,8,14)" onclick="textrev(8,14)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,8,15)" onclick="textrev(8,15)" class="button1" maxlength="1"/>
+<br/>
+<input onkeyup="myfunc(event,9,1)" onclick="textrev(9,1)" class="button1" maxlength="1" /><span class="cluenumber">35</span><input onkeyup="myfunc(event,9,2)" onclick="textrev(9,2)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,9,3)" onclick="textrev(9,3)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,9,4)" onclick="textrev(9,4)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,9,6)" onclick="textrev(9,6)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,9,8)" onclick="textrev(9,8)" class="button1" maxlength="1"/><span class="cluenumber">36</span><input onkeyup="myfunc(event,9,9)" onclick="textrev(9,9)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,9,10)" onclick="textrev(9,10)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,9,12)" onclick="textrev(9,12)" class="button1" maxlength="1"/><span class="cluenumber">37</span><input onkeyup="myfunc(event,9,13)" onclick="textrev(9,13)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,9,14)" onclick="textrev(9,14)" class="button1" maxlength="1"/><input class="button1 button2" disabled />
+<br/>
+<input onkeyup="myfunc(event,10,1)" onclick="textrev(10,1)" class="button1" maxlength="1" /><span class="cluenumber">38</span><input onkeyup="myfunc(event,10,2)" onclick="textrev(10,2)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,10,4)" onclick="textrev(10,4)" class="button1" maxlength="1"/><span class="cluenumber">39</span><input onkeyup="myfunc(event,10,5)" onclick="textrev(10,5)" class="button1" maxlength="1"/><span class="cluenumber">40</span><input onkeyup="myfunc(event,10,6)" onclick="textrev(10,6)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,10,7)" onclick="textrev(10,7)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,10,8)" onclick="textrev(10,8)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,10,9)" onclick="textrev(10,9)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,10,10)" onclick="textrev(10,10)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,10,11)" onclick="textrev(10,11)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,10,12)" onclick="textrev(10,12)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,10,13)" onclick="textrev(10,13)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,10,15)" onclick="textrev(10,15)" class="button1" maxlength="1"/><span class="cluenumber">41</span>
+<br/>
+<input onkeyup="myfunc(event,11,1)" onclick="textrev(11,1)" class="button1" maxlength="1" /><span class="cluenumber">42</span><input onkeyup="myfunc(event,11,2)" onclick="textrev(11,2)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,11,3)" onclick="textrev(11,3)" class="button1" maxlength="1"/><span class="cluenumber">43</span><input class="button1 button2" disabled /><input onkeyup="myfunc(event,11,5)" onclick="textrev(11,5)" class="button1" maxlength="1"/><span class="cluenumber">44</span><input onkeyup="myfunc(event,11,6)" onclick="textrev(11,6)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,11,8)" onclick="textrev(11,8)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input class="button1 button2" disabled /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,11,12)" onclick="textrev(11,12)" class="button1" maxlength="1"/><span class="cluenumber">45</span><input onkeyup="myfunc(event,11,13)" onclick="textrev(11,13)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,11,14)" onclick="textrev(11,14)" class="button1" maxlength="1"/><span class="cluenumber">46</span><input onkeyup="myfunc(event,11,15)" onclick="textrev(11,15)" class="button1" maxlength="1"/>
+<br/>
+<input onkeyup="myfunc(event,12,1)" onclick="textrev(12,1)" class="button1" maxlength="1" /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,12,3)" onclick="textrev(12,3)" class="button1" maxlength="1"/><span class="cluenumber">47</span><input onkeyup="myfunc(event,12,4)" onclick="textrev(12,4)" class="button1" maxlength="1"/><span class="cluenumber">48</span><input onkeyup="myfunc(event,12,5)" onclick="textrev(12,5)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,12,6)" onclick="textrev(12,6)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,12,7)" onclick="textrev(12,7)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,12,8)" onclick="textrev(12,8)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,12,9)" onclick="textrev(12,9)" class="button1" maxlength="1"/><span class="cluenumber">49</span><input onkeyup="myfunc(event,12,10)" onclick="textrev(12,10)" class="button1" maxlength="1"/><span class="cluenumber">50</span><input onkeyup="myfunc(event,12,11)" onclick="textrev(12,11)" class="button1" maxlength="1"/><span class="cluenumber">51</span><input onkeyup="myfunc(event,12,12)" onclick="textrev(12,12)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,12,13)" onclick="textrev(12,13)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,12,14)" onclick="textrev(12,14)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,12,15)" onclick="textrev(12,15)" class="button1" maxlength="1"/>
+<br/>
+<input onkeyup="myfunc(event,13,1)" onclick="textrev(13,1)" class="button1" maxlength="1" /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,13,3)" onclick="textrev(13,3)" class="button1" maxlength="1"/><span class="cluenumber">52</span><input onkeyup="myfunc(event,13,4)" onclick="textrev(13,4)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,13,5)" onclick="textrev(13,5)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,13,6)" onclick="textrev(13,6)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,13,8)" onclick="textrev(13,8)" class="button1" maxlength="1"/><span class="cluenumber">53</span><input onkeyup="myfunc(event,13,9)" onclick="textrev(13,9)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,13,10)" onclick="textrev(13,10)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,13,11)" onclick="textrev(13,11)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,13,12)" onclick="textrev(13,12)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,13,14)" onclick="textrev(13,14)" class="button1" maxlength="1"/><span class="cluenumber">54</span><input onkeyup="myfunc(event,13,15)" onclick="textrev(13,15)" class="button1" maxlength="1"/>
+<br/>
+<input onkeyup="myfunc(event,14,1)" onclick="textrev(14,1)" class="button1" maxlength="1" /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,14,3)" onclick="textrev(14,3)" class="button1" maxlength="1"/><span class="cluenumber">55</span><input onkeyup="myfunc(event,14,4)" onclick="textrev(14,4)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,14,5)" onclick="textrev(14,5)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,14,6)" onclick="textrev(14,6)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input class="button1 button2" disabled /><input class="button1 button2" disabled /><input onkeyup="myfunc(event,14,10)" onclick="textrev(14,10)" class="button1" maxlength="1"/><span class="cluenumber">56</span><input onkeyup="myfunc(event,14,11)" onclick="textrev(14,11)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,14,12)" onclick="textrev(14,12)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,14,14)" onclick="textrev(14,14)" class="button1" maxlength="1"/><input class="button1 button2" disabled />
+<br/>
+<input onkeyup="myfunc(event,15,1)" onclick="textrev(15,1)" class="button1" maxlength="1" /><span class="cluenumber">57</span><input onkeyup="myfunc(event,15,2)" onclick="textrev(15,2)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,15,3)" onclick="textrev(15,3)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,15,4)" onclick="textrev(15,4)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,15,5)" onclick="textrev(15,5)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,15,6)" onclick="textrev(15,6)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,15,7)" onclick="textrev(15,7)" class="button1" maxlength="1"/><input class="button1 button2" disabled /><input onkeyup="myfunc(event,15,9)" onclick="textrev(15,9)" class="button1" maxlength="1"/><span class="cluenumber">58</span><input onkeyup="myfunc(event,15,10)" onclick="textrev(15,10)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,15,11)" onclick="textrev(15,11)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,15,12)" onclick="textrev(15,12)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,15,13)" onclick="textrev(15,13)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,15,14)" onclick="textrev(15,14)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,15,15)" onclick="textrev(15,15)" class="button1" maxlength="1"/>
+
+</div>
+</center>
+<div class="cluesbg">
+    <h3 style="text-align: center">Across</h3>
+<center>
+<div class="clues">
+    
+    <p class="acluetext" onclick="ahighl(1)">1. First clue</p> 
+    <p class="acluetext" onclick="ahighl(2)">2.Second cluejhkajhsdfkjhdsak jhfdaskjhfdsakjhfadsjk</p>
+    <p class="acluetext" onclick="ahighl(3)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(4)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(5)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(6)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(7)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(8)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(9)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(10)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(11)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(12)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(13)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(14)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(15)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(16)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(17)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(18)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(19)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(20)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(21)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(22)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(23)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(24)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(25)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(26)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(27)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(28)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(29)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(30)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(31)">3. Third clue </p>
+    <p class="acluetext" onclick="ahighl(32)">3. Third clue </p>
+</div>
+</center>    
+</div>
+<div class="cluesbg">
+    <h3 style="text-align: center">Down</h3>
+<center>
+<div class="clues">
+    
+    <p class="acluetext" onclick="dhighl(1)">1. First clue</p> 
+    <p class="acluetext" onclick="dhighl(2)">2.Second cluejhkajhsdfkjhdsak jhfdaskjhfdsakjhfadsjk</p>
+    <p class="acluetext" onclick="dhighl(3)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(4)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(5)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(6)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(7)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(8)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(9)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(10)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(11)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(12)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(13)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(14)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(15)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(16)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(17)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(18)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(19)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(20)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(21)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(22)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(23)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(24)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(25)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(26)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(27)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(28)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(29)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(30)">3. Third clue </p>
+    <p class="acluetext" onclick="dhighl(31)">3. Third clue </p>
+    </div>
+</center>    
+</div>
+
+
+
+
+<!-- <input class="button1 button2" disabled /><input  onkeyup="myfunc(event,2,2)" onclick="textrev(2,2)" class="button1" id="l4" maxlength="1"/><input  onkeyup="myfunc(event,2,3)" onclick="textrev(2,3)" class="button1" id="l5" maxlength="1"/>
+<br/>
+<input class="button1 button2" disabled /><input  onkeyup="myfunc(event,3,2)" onclick="textrev(3,2)" class="button1" id="l6" maxlength="1"/><input  onkeyup="myfunc(event,3,3)" onclick="textrev(3,3)" class="button1" id="l7" maxlength="1"/> -->
+<!-- <button class="button1" type="text" id="l4" maxlength="1"></button><button class="button1" type="text" id="l5" maxlength="1"></button> -->
+
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <center>
+      <h1>You got it!</h1>
+      <p>You got it!</p>
+      <img src="image.jpeg" alt="PP+CR7" width="250" height="250">
+      </center> 
+    </div>
+  
+  </div>
+
+  <div class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <center>
+      <h1>You have it!</h1>
+      <p>You got it!</p>
+      <img src="image.jpeg" alt="PP+CR7" width="250" height="250">
+      </center> 
+    </div>
+  
+  </div>
+
+<script>
+
+    // function astat(i)
+    // {
+        
+    // }
+    
+    //Constructor function for across words
+    function Awords(i,j)
+    {
+        this.starti=i;
+        this.endi=j;
+    }
+
+    function Dwords(i,j)
+    {
+        this.starti=i;
+        this.endi=j;
+    }
+    const acrosswords=new Array(32);
+    const downwords=new Array(31);
+
+    acrosswords[0]=new Awords(0,14);
+    acrosswords[1]=new Awords(17,19);
+    acrosswords[2]=new Awords(21,22);
+    acrosswords[3]=new Awords(24,26);
+    acrosswords[4]=new Awords(28,29);
+    acrosswords[5]=new Awords(32,44);
+    acrosswords[6]=new Awords(45,47);
+    acrosswords[7]=new Awords(50,53);
+    acrosswords[8]=new Awords(55,59);
+    acrosswords[9]=new Awords(69,72);
+    acrosswords[10]=new Awords(78,84);
+    acrosswords[11]=new Awords(88,89);
+    acrosswords[12]=new Awords(92,97);
+    acrosswords[13]=new Awords(100,104);
+    acrosswords[14]=new Awords(105,114);
+    acrosswords[15]=new Awords(116,119);
+    acrosswords[16]=new Awords(120,123);
+    acrosswords[17]=new Awords(127,129);
+    acrosswords[18]=new Awords(131,133);
+    acrosswords[19]=new Awords(135,136);
+    acrosswords[20]=new Awords(138,147);
+    acrosswords[21]=new Awords(150,152);
+    acrosswords[22]=new Awords(154,155);
+    acrosswords[23]=new Awords(161,164);
+    acrosswords[24]=new Awords(167,179);
+    acrosswords[25]=new Awords(182,185);
+    acrosswords[26]=new Awords(187,191);
+    acrosswords[27]=new Awords(193,194);
+    acrosswords[28]=new Awords(197,200);
+    acrosswords[29]=new Awords(204,206);
+    acrosswords[30]=new Awords(210,216);
+    acrosswords[31]=new Awords(218,224);
+
+    downwords[0]=new Dwords(0,60);
+    downwords[1]=new Dwords(2,62);
+    downwords[2]=new Dwords(3,33);
+    downwords[3]=new Dwords(4,34);
+    downwords[4]=new Dwords(6,111);
+    downwords[5]=new Dwords(7,52);
+    downwords[6]=new Dwords(9,39);
+    downwords[7]=new Dwords(10,70);
+    downwords[8]=new Dwords(11,71);
+    downwords[9]=new Dwords(14,119);
+    downwords[10]=new Dwords(35,215);
+    downwords[11]=new Dwords(38,53);
+    downwords[12]=new Dwords(46,76);
+    downwords[13]=new Dwords(63,138);
+    downwords[14]=new Dwords(69,84);
+    downwords[15]=new Dwords(82,187);
+    downwords[16]=new Dwords(88,133);
+    downwords[17]=new Dwords(92,122);
+    downwords[18]=new Dwords(101,216);
+    downwords[19]=new Dwords(105,210);
+    downwords[20]=new Dwords(106,151);
+    downwords[21]=new Dwords(113,143);
+    downwords[22]=new Dwords(114,144);
+    downwords[23]=new Dwords(139,214);
+    downwords[24]=new Dwords(149,194);
+    downwords[25]=new Dwords(152,212);
+    downwords[26]=new Dwords(163,223);
+    downwords[27]=new Dwords(168,213);
+    downwords[28]=new Dwords(173,188);
+    downwords[29]=new Dwords(174,219);
+    downwords[30]=new Dwords(175,220);
+    
+    
+    
+
+
+    function acluehigh(i)//scroll to clue corresponding to the ith position on 1-d array of buttons
+    {   
+        if(textdir==0){
+        for(let u=0;u<32;u++)
+        {
+            if(i<=acrosswords[u].endi && i>=acrosswords[u].starti)
+            {
+                //document.getElementById("demo").innerHTML=""+u;
+                for(let w=0;w<63;w++)//reset previously highlighted clues
+                 {
+                    var x=document.getElementsByClassName("acluetext")[w];
+
+                     x.style.backgroundColor="white";
+
+                 }
+                 var y=document.getElementsByClassName("acluetext")[u];
+                y.scrollIntoView();
+                
+                y.style.backgroundColor="red";
+                break;
+            }
+        }
+        
+        }
+        else{
+            for(let u=0;u<31;u++)//reset previously highlighted clues
+            {
+                if((i%sidelength)==((downwords[u].starti)%15)&&((Math.trunc(i/sidelength))>=Math.trunc((downwords[u].starti)/15))&&((Math.trunc(i/sidelength))<=Math.trunc((downwords[u].endi)/15)))
+                {
+                    for(let w=0;w<63;w++)//reset previously highlighted clues
+                     {
+                       var x=document.getElementsByClassName("acluetext")[w];
+                       x.style.backgroundColor="white";
+                     }
+                     var y=document.getElementsByClassName("acluetext")[u+32];
+                     y.scrollIntoView();
+                
+                    y.style.backgroundColor="red";
+                    break;
+                }
+            }
+        }
+        //document.getElementById("demo").innerHTML=""+i;
+    }
+
+    function ahighl(i)//function to highlight the across clue clicked
+    {
+        for(let u=0;u<32;u++)//reset previously highlighted clues
+        {
+            var y=document.getElementsByClassName("acluetext")[u];
+
+            y.style.backgroundColor="white";
+
+        }
+
+        var x=document.getElementsByClassName("acluetext")[i-1];
+        x.style.backgroundColor="red";
+        p=acrosswords[i-1].starti;
+        q=acrosswords[i-1].endi;
+        document.getElementsByClassName("button1")[p].focus();
+        textdir=0;
+        k=(p%sidelength)+1;
+        l=Math.trunc(p/sidelength)+1;
+        //document.getElementById("demo").innerHTML=""+k+l;
+        colorbg(l,k);
+    }
+
+    function dhighl(i)//function to highlight the across clue clicked
+    {
+        for(let u=32;u<63;u++)//reset previously highlighted clues
+        {
+            var y=document.getElementsByClassName("acluetext")[u];
+
+            y.style.backgroundColor="white";
+
+        }
+
+        var x=document.getElementsByClassName("acluetext")[i+31];
+        x.style.backgroundColor="red";
+        p=downwords[i-1].starti;
+        q=downwords[i-1].endi;
+        document.getElementsByClassName("button1")[p].focus();
+        textdir=1;
+        k=(p%sidelength)+1;
+        l=Math.trunc(p/sidelength)+1;
+        //document.getElementById("demo").innerHTML=""+k+l;
+        colorbg(l,k);
+    }
+    var a=new Array(15);//will contain the whole crossword
+    for(let i=0;i<15;i++)
+    {   
+        a[i]=new Array(15);
+        for(let j=0;j<15;j++){
+            a[i][j]=0;
+        }
+    }
+    //a[i][j] will be zero if i,j is disabled.
+    a[0][0]=77;
+    a[0][1]=65;
+    a[0][2]=67;
+    a[0][3]=68;
+    a[0][4]=79;
+    a[0][5]=78;
+    a[0][6]=65;
+    a[0][7]=76;
+    a[0][8]=68;
+    a[0][9]=67;
+    a[0][10]=65;
+    a[0][11]=77;
+    a[0][12]=80;
+    a[0][13]=85;
+    a[0][14]=83;
+
+    a[1][0]=65;
+    a[1][1]=0;
+    a[1][2]=65;
+    a[1][3]=85;
+    a[1][4]=83;
+    a[1][5]=0;
+    a[1][6]=80;
+    a[1][7]=73;
+    a[1][8]=0;
+    a[1][9]=79;
+    a[1][10]=76;
+    a[1][11]=65;
+    a[1][12]=0;
+    a[1][13]=65;
+    a[1][14]=67;
+
+    a[2][0]=80;
+    a[2][1]=0;
+    a[2][2]=78;
+    a[2][3]=79;
+    a[2][4]=82;
+    a[2][5]=65;
+    a[2][6]=72;
+    a[2][7]=66;
+    a[2][8]=73;
+    a[2][9]=84;
+    a[2][10]=73;
+    a[2][11]=78;
+    a[2][12]=71;
+    a[2][13]=77;
+    a[2][14]=69;
+
+    a[3][0]=76;
+    a[3][1]=73;
+    a[3][2]=68;
+    a[3][3]=0;
+    a[3][4]=0;
+    a[3][5]=78;
+    a[3][6]=79;
+    a[3][7]=69;
+    a[3][8]=76;
+    a[3][9]=0;
+    a[3][10]=66;
+    a[3][11]=79;
+    a[3][12]=66;
+    a[3][13]=65;
+    a[3][14]=78;
+
+    a[4][0]=69;
+    a[4][1]=67;
+    a[4][2]=89;
+    a[4][3]=65;
+    a[4][4]=78;
+    a[4][5]=71;
+    a[4][6]=82;
+    a[4][7]=0;
+    a[4][8]=0;
+    a[4][9]=66;
+    a[4][10]=73;
+    a[4][11]=74;
+    a[4][12]=85;
+    a[4][13]=0;
+    a[4][14]=65;
+
+    a[5][0]=0;
+    a[5][1]=69;
+    a[5][2]=0;
+    a[5][3]=67;
+    a[5][4]=72;
+    a[5][5]=82;
+    a[5][6]=73;
+    a[5][7]=83;
+    a[5][8]=84;
+    a[5][9]=89;
+    a[5][10]=0;
+    a[5][11]=0;
+    a[5][12]=0;
+    a[5][13]=79;
+    a[5][14]=82;
+
+    a[6][0]=0;
+    a[6][1]=0;
+    a[6][2]=65;
+    a[6][3]=82;
+    a[6][4]=84;
+    a[6][5]=73;
+    a[6][6]=83;
+    a[6][7]=84;
+    a[6][8]=0;
+    a[6][9]=0;
+    a[6][10]=69;
+    a[6][11]=66;
+    a[6][12]=73;
+    a[6][13]=88;
+    a[6][14]=73;
+
+    a[7][0]=83;
+    a[7][1]=84;
+    a[7][2]=82;
+    a[7][3]=79;
+    a[7][4]=78;
+    a[7][5]=71;
+    a[7][6]=84;
+    a[7][7]=69;
+    a[7][8]=65;
+    a[7][9]=77;
+    a[7][10]=0;
+    a[7][11]=79;
+    a[7][12]=76;
+    a[7][13]=73;
+    a[7][14]=79;
+    
+    a[8][0]=73;
+    a[8][1]=82;
+    a[8][2]=73;
+    a[8][3]=83;
+    a[8][4]=0;
+    a[8][5]=78;
+    a[8][6]=0;
+    a[8][7]=65;
+    a[8][8]=82;
+    a[8][9]=69;
+    a[8][10]=0;
+    a[8][11]=85;
+    a[8][12]=87;
+    a[8][13]=79;
+    a[8][14]=0;
+    
+    a[9][0]=88;
+    a[9][1]=73;
+    a[9][2]=0;
+    a[9][3]=83;
+    a[9][4]=80;
+    a[9][5]=79;
+    a[9][6]=84;
+    a[9][7]=77;
+    a[9][8]=67;
+    a[9][9]=71;
+    a[9][10]=73;
+    a[9][11]=76;
+    a[9][12]=76;
+    a[9][13]=0;
+    a[9][14]=68;
+
+    a[10][0]=84;
+    a[10][1]=79;
+    a[10][2]=79;
+    a[10][3]=0;
+    a[10][4]=82;
+    a[10][5]=78;
+    a[10][6]=0;
+    a[10][7]=73;
+    a[10][8]=0;
+    a[10][9]=0;
+    a[10][10]=0;
+    a[10][11]=69;
+    a[10][12]=76;
+    a[10][13]=83;
+    a[10][14]=65;
+
+    a[11][0]=89;
+    a[11][1]=0;
+    a[11][2]=83;
+    a[11][3]=67;
+    a[11][4]=79;
+    a[11][5]=80;
+    a[11][6]=73;
+    a[11][7]=78;
+    a[11][8]=71;
+    a[11][9]=82;
+    a[11][10]=69;
+    a[11][11]=86;
+    a[11][12]=73;
+    a[11][13]=69;
+    a[11][14]=87;
+
+    a[12][0]=83;
+    a[12][1]=0;
+    a[12][2]=67;
+    a[12][3]=85;
+    a[12][4]=80;
+    a[12][5]=65;
+    a[12][6]=0;
+    a[12][7]=71;
+    a[12][8]=85;
+    a[12][9]=65;
+    a[12][10]=86;
+    a[12][11]=65;
+    a[12][12]=0;
+    a[12][13]=86;
+    a[12][14]=65;
+
+    a[13][0]=73;
+    a[13][1]=0;
+    a[13][2]=65;
+    a[13][3]=67;
+    a[13][4]=69;
+    a[13][5]=82;
+    a[13][6]=0;
+    a[13][7]=0;
+    a[13][8]=0;
+    a[13][9]=89;
+    a[13][10]=73;
+    a[13][11]=82;
+    a[13][12]=0;
+    a[13][13]=69;
+    a[13][14]=0;
+
+    a[14][0]=88;
+    a[14][1]=69;
+    a[14][2]=82;
+    a[14][3]=65;
+    a[14][4]=82;
+    a[14][5]=67;
+    a[14][6]=72;
+    a[14][7]=0;
+    a[14][8]=66;
+    a[14][9]=65;
+    a[14][10]=76;
+    a[14][11]=68;
+    a[14][12]=73;
+    a[14][13]=78;
+    a[14][14]=71;
+
+
+    var modala1=1;//macdonaldcampus
+    var modala2=1;//aus
+    var modala3=1;//pi
+    var modala4=1;//ola
+    var modala5=1;//ac
+    var modala6=1;//norah biting me
+    var modala7=1;//lid
+    var modala8=1;//noel
+    var modala9=1;//boban
+    var modala10=1;//biju
+    var modala11=1;//christy
+    var modala12=1;//or
+    var modala13=1;//artist
+    var modala14=1;//ebixi
+    var modala15=1;//strongteam
+    var modala16=1;//olio
+    var modala17=1;//iris
+    var modala18=1;//are
+    var modala19=1;//uwo
+    var modala20=1;//xi
+    var modala21=1;//spotmcgill
+    var modala22=1;//too
+    var modala23=1;//rn
+    var modala24=1;//elsa
+    var modala25=1;//scopingreview
+    var modala26=1;//cupa
+    var modala27=1;//guava
+    var modala28=1;//va
+    var modala29=1;//acer
+    var modala30=1;//yir
+    var modala31=1;//xerarch
+    var modala32=1;//balding
+
+    var modald1=1;//maple;
+    var modald2=1;//candy
+    var modald3=1;//duo
+    var modald4=1;//osr
+    var modald5=1;//aphorist
+    var modald6=1;//libe
+    var modald7=1;//cot
+    var modald8=1;//alibi
+    var modald9=1;//manoj
+    var modald10=1;//scenario
+    var modald11=1;//angrignonparc
+    var modald12=1;//il
+    var modald13=1;//ice
+    var modald14=1;//across
+    var modald15=1;//by
+    var modald16=1;//steaming
+    var modald17=1;//oxio
+    var modald18=1;//ari
+    var modald19=1;//boulevard
+    var modald20=1;//sixtysix
+    var modald21=1;//trio
+    var modald22=1;//arc
+    var modald23=1;//meg
+    var modald24=1;//proper
+    var modald25=1;//dawa
+    var modald26=1;//oscar
+    var modald27=1;//seven
+    var modald28=1;//cuca
+    var modald29=1;//gu
+    var modald30=1;//raya
+    var modald31=1;//evil
+
+
+    var timesclicked=0;
+    var currenti=1;
+    var currentj=1;
+    var sidelength=15;
+    var textdir=0;//flag for across - 0 or down - 1
+    var dis=new Array(225);//flag for whether it is disabled or not;
+    var bgcolor=new Array(225);
+    bgcolor.fill(0);//0 is white, 1 is black/red, 2 is gray and 3 is green
+    
+    dis.fill(0);
+    for(let k=0;k<sidelength;k++)
+    {
+        for(let l=0;l<sidelength;l++)
+        {
+            if(a[k][l]==0)
+                {
+                    dis[k*sidelength+l]=1;
+                    bgcolor[k*sidelength+l]=1;
+                }
+        }
+    }
+    //dis[sidelength]=1;//meaning 2,1 is disabled  
+    //dis[2*sidelength]=1;//meaning 3,1 is disabled
+    //bgcolor[3]=1;
+    //bgcolor[6]=1;
+    var c=new Array(225);//c is 1 if that entry is correct;
+    c.fill(0);
+    var m=new Array(15);
+    for(let i=0;i<15;i++)
+    {   
+        m[i]=new Array(15);
+        for(let j=0;j<15;j++){
+            m[i][j]=0;
+        }
+    }
+    var across=new Array(100);
+    across.fill(0);
+    var down=new Array(100);
+    down.fill(0);
+
+
+    function check()
+    {
+        for(let i=0;i<sidelength;i++)
+        {
+            for(let j=0;j<sidelength;j++)
+            {
+                if(a[i][j]==m[i][j])
+                    c[i*sidelength+j]=1;
+                else
+                    c[i*sidelength+j]=0;
+            }
+        }
+
+        for(let i=0;i<225;i++)
+        {
+            if(bgcolor[i]!=1 && bgcolor[i]!=2)
+                bgcolor[i]=0;
+        }
+
+        if(c[0]&&c[1]&&c[2]&&c[3]&&c[4]&&c[5]&&c[6]&&c[7]&&c[8]&&c[9]&&c[10]&&c[11]&&c[12]&&c[13]&&c[14])//macdonald
+        {
+            bgcolor[0]=3;
+            bgcolor[1]=3;
+            bgcolor[2]=3;
+            bgcolor[3]=3;
+            bgcolor[4]=3;
+            bgcolor[5]=3;
+            bgcolor[6]=3;
+            bgcolor[7]=3;
+            bgcolor[8]=3;
+            bgcolor[9]=3;
+            bgcolor[10]=3;
+            bgcolor[11]=3;
+            bgcolor[12]=3;
+            bgcolor[13]=3;
+            bgcolor[14]=3;
+            if(modala1)
+            {   
+                modala1=0;
+                var modal=document.getElementsByClassName("modal")[0]
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[17]&&c[18]&&c[19])//aus
+        {
+            bgcolor[17]=3;
+            bgcolor[18]=3;
+            bgcolor[19]=3;
+            if(modala2)
+            {   
+                modala2=0;
+                var modal=document.getElementsByClassName("modal")[1];
+                var span=document.getElementsByClassName("close")[1];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[21]&&c[22])//pi
+        {
+            bgcolor[21]=3;
+            bgcolor[22]=3;
+            if(modala3)
+            {   
+                modala3=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[24]&&c[25]&&c[26])//ola
+        {
+            bgcolor[24]=3;
+            bgcolor[25]=3;
+            bgcolor[26]=3;
+            if(modala4)
+            {   
+                modala4=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[28]&&c[29])//ac
+        {
+            bgcolor[28]=3;
+            bgcolor[29]=3;
+            if(modala5)
+            {   
+                modala5=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[32]&&c[33]&&c[34]&&c[35]&&c[36]&&c[37]&&c[38]&&c[39]&&c[40]&&c[41]&&c[42]&&c[43]&&c[44])//norahbitingme
+        {
+            bgcolor[32]=3;
+            bgcolor[33]=3;
+            bgcolor[34]=3;
+            bgcolor[35]=3;
+            bgcolor[36]=3;
+            bgcolor[37]=3;
+            bgcolor[38]=3;
+            bgcolor[39]=3;
+            bgcolor[40]=3;
+            bgcolor[41]=3;
+            bgcolor[42]=3;
+            bgcolor[43]=3;
+            bgcolor[44]=3;
+
+            if(modala6)
+            {   
+                modala6=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[45]&&c[46]&&c[47])//lid
+        {
+            bgcolor[45]=3;
+            bgcolor[46]=3;
+            bgcolor[47]=3;
+            if(modala7)
+            {   
+                modala7=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+        
+        if(c[50]&&c[51]&&c[52]&&c[53])//noel
+        {
+            bgcolor[50]=3;
+            bgcolor[51]=3;
+            bgcolor[52]=3;
+            bgcolor[53]=3;
+            if(modala8)
+            {   
+                modala8=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+        
+        if(c[55]&&c[56]&&c[57]&&c[58]&&c[59])//boban
+        {
+            bgcolor[55]=3;
+            bgcolor[56]=3;
+            bgcolor[57]=3;
+            bgcolor[58]=3;
+            bgcolor[59]=3;
+            if(modala9)
+            {   
+                modala9=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[69]&&c[70]&&c[71]&&c[72])//biju
+        {
+            bgcolor[69]=3;
+            bgcolor[70]=3;
+            bgcolor[71]=3;
+            bgcolor[72]=3;
+            if(modala10)
+            {   
+                modala10=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+       
+
+        if(c[78]&&c[79]&&c[80]&&c[81]&&c[82]&&c[83]&&c[84])//christy
+        {
+            bgcolor[78]=3;
+            bgcolor[79]=3;
+            bgcolor[80]=3;
+            bgcolor[81]=3;
+            bgcolor[82]=3;
+            bgcolor[83]=3;
+            bgcolor[84]=3;
+            if(modala11)
+            {   
+                modala11=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+        
+        if(c[88]&&c[89])//or
+        {
+            bgcolor[88]=3;
+            bgcolor[89]=3;
+            if(modala12)
+            {   
+                modala12=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        else
+        {
+            bgcolor[88]=0;
+            bgcolor[89]=0;
+        }
+
+        if(c[92]&&c[93]&&c[94]&&c[95]&&c[96]&&c[97])//artist
+        {
+            bgcolor[92]=3;
+            bgcolor[93]=3;
+            bgcolor[94]=3;
+            bgcolor[95]=3;
+            bgcolor[96]=3;
+            bgcolor[97]=3;
+            if(modala13)
+            {   
+                modala13=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[104]&&c[100]&&c[101]&&c[102]&&c[103])//ebixi
+        {
+            bgcolor[104]=3;
+            bgcolor[101]=3;
+            bgcolor[102]=3;
+            bgcolor[103]=3;
+            bgcolor[100]=3;
+            if(modala14)
+            {   
+                modala14=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[105]&&c[106]&&c[107]&&c[108]&&c[109]&&c[110]&&c[111]&&c[112]&&c[113]&&c[114])//strongteam
+        {
+            bgcolor[105]=3;
+            bgcolor[106]=3;
+            bgcolor[107]=3;
+            bgcolor[108]=3;
+            bgcolor[109]=3;
+            bgcolor[110]=3;
+            bgcolor[111]=3;
+            bgcolor[112]=3;
+            bgcolor[113]=3;
+            bgcolor[114]=3;
+
+            if(modala15)
+            {   
+                modala15=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[116]&&c[117]&&c[118]&&c[119])//olio
+        {
+            bgcolor[116]=3;
+            bgcolor[117]=3;
+            bgcolor[118]=3;
+            bgcolor[119]=3;
+            if(modala16)
+            {   
+                modala16=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[120]&&c[121]&&c[122]&&c[123])//iris
+        {
+            bgcolor[120]=3;
+            bgcolor[121]=3;
+            bgcolor[122]=3;
+            bgcolor[123]=3;
+            if(modala17)
+            {   
+                modala17=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+        
+        if(c[127]&&c[128]&&c[129])//are
+        {
+            bgcolor[127]=3;
+            bgcolor[128]=3;
+            bgcolor[129]=3;
+            if(modala18)
+            {   
+                modala18=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[131]&&c[132]&&c[133])//uwo
+        {
+            bgcolor[131]=3;
+            bgcolor[132]=3;
+            bgcolor[133]=3;
+            if(modala19)
+            {   
+                modala19=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[135]&&c[136])//xi
+        {
+            bgcolor[135]=3;
+            bgcolor[136]=3;
+            
+            if(modala20)
+            {   
+                modala20=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[138]&&c[139]&&c[140]&&c[141]&&c[142]&&c[143]&&c[144]&&c[145]&&c[146]&&c[147])//spotmcgill
+        {
+            bgcolor[138]=3;
+            bgcolor[139]=3;
+            bgcolor[140]=3;
+            bgcolor[141]=3;
+            bgcolor[142]=3;
+            bgcolor[143]=3;
+            bgcolor[144]=3;
+            bgcolor[145]=3;
+            bgcolor[146]=3;
+            bgcolor[147]=3;
+
+            if(modala21)
+            {   
+                modala21=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[150]&&c[151]&&c[152])//too
+        {
+            bgcolor[150]=3;
+            bgcolor[151]=3;
+            bgcolor[152]=3;
+            if(modala22)
+            {   
+                modala22=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[154]&&c[155])//rn
+        {
+            bgcolor[154]=3;
+            bgcolor[155]=3;
+            if(modala23)
+            {   
+                modala23=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+        if(c[161]&&c[162]&&c[163]&&c[164])//elsa
+        {
+            bgcolor[161]=3;
+            bgcolor[162]=3;
+            bgcolor[163]=3;
+            bgcolor[164]=3;
+            if(modala24)
+            {   
+                modala24=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[167]&&c[168]&&c[169]&&c[170]&&c[171]&&c[172]&&c[173]&&c[174]&&c[175]&&c[176]&&c[177]&&c[178]&&c[179])//scopingreview
+        {
+            bgcolor[167]=3;
+            bgcolor[168]=3;
+            bgcolor[169]=3;
+            bgcolor[170]=3;
+            bgcolor[171]=3;
+            bgcolor[172]=3;
+            bgcolor[173]=3;
+            bgcolor[174]=3;
+            bgcolor[175]=3;
+            bgcolor[176]=3;
+            bgcolor[177]=3;
+            bgcolor[178]=3;
+            bgcolor[179]=3;
+
+            if(modala25)
+            {   
+                modala25=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[182]&&c[165]&&c[183]&&c[184])//cupa
+        {
+            bgcolor[185]=3;
+            bgcolor[182]=3;
+            bgcolor[183]=3;
+            bgcolor[184]=3;
+            if(modala26)
+            {   
+                modala26=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[188]&&c[187]&&c[189]&&c[190]&&c[191])//guava
+        {
+            bgcolor[187]=3;
+            bgcolor[188]=3;
+            bgcolor[189]=3;
+            bgcolor[190]=3;
+            bgcolor[191]=3;
+            if(modala27)
+            {   
+                modala27=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+            
+        
+        
+
+        if(c[193]&&c[194])//va
+        {
+            bgcolor[193]=3;
+            bgcolor[194]=3;
+            
+            if(modala28)
+            {   
+                modala28=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[197]&&c[198]&&c[199]&&c[200])//acer
+        {
+            bgcolor[197]=3;
+            bgcolor[198]=3;
+            bgcolor[199]=3;
+            bgcolor[200]=3;
+            if(modala29)
+            {   
+                modala29=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[204]&&c[205]&&c[206])//yir
+        {
+            bgcolor[204]=3;
+            bgcolor[205]=3;
+            bgcolor[206]=3;
+            
+            if(modala30)
+            {   
+                modala30=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[210]&&c[211]&&c[212]&&c[213]&&c[214]&&c[215]&&c[216])//xerarch
+        {
+            bgcolor[210]=3;
+            bgcolor[211]=3;
+            bgcolor[212]=3;
+            bgcolor[213]=3;
+            bgcolor[214]=3;
+            bgcolor[215]=3;
+            bgcolor[216]=3;
+            if(modala31)
+            {   
+                modala31=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[218]&&c[219]&&c[220]&&c[221]&&c[222]&&c[223]&&c[224])//balding
+        {
+            bgcolor[218]=3;
+            bgcolor[219]=3;
+            bgcolor[220]=3;
+            bgcolor[221]=3;
+            bgcolor[222]=3;
+            bgcolor[223]=3;
+            bgcolor[224]=3;
+            if(modala32)
+            {   
+                modala32=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[0]&&c[15]&&c[30]&&c[45]&&c[60])//maple
+        {
+            bgcolor[0]=3;
+            bgcolor[15]=3;
+            bgcolor[30]=3;
+            bgcolor[45]=3;
+            bgcolor[60]=3;
+
+            if(modald1)
+            {   
+                modald1=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+
+        if(c[2]&&c[17]&&c[32]&&c[47]&&c[62])//candy
+        {
+            bgcolor[2]=3;
+            bgcolor[17]=3;
+            bgcolor[32]=3;
+            bgcolor[47]=3;
+            bgcolor[62]=3;
+
+            if(modald2)
+            {   
+                modald2=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+        if(c[3]&&c[18]&&c[33])//duo
+        {
+            bgcolor[3]=3;
+            bgcolor[18]=3;
+            bgcolor[33]=3;
+            if(modald3)
+            {   
+                modald3=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[4]&&c[19]&&c[34])//osr
+        {
+            bgcolor[4]=3;
+            bgcolor[19]=3;
+            bgcolor[34]=3;
+            if(modald4)
+            {   
+                modald4=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[6]&&c[21]&&c[36]&&c[51]&&c[66]&&c[81]&&c[96]&&c[111])//aphorist
+        {
+            bgcolor[6]=3;
+            bgcolor[21]=3;
+            bgcolor[36]=3;
+            bgcolor[51]=3;
+            bgcolor[66]=3;
+            bgcolor[81]=3;
+            bgcolor[96]=3;
+            bgcolor[111]=3;
+            if(modald5)
+            {   
+                modald5=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[7]&&c[22]&&c[37]&&c[52])//libe
+        {
+            bgcolor[7]=3;
+            bgcolor[22]=3;
+            bgcolor[37]=3;
+            bgcolor[52]=3;
+            if(modald6)
+            {   
+                modald6=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[9]&&c[24]&&c[39])//cot
+        {
+            bgcolor[9]=3;
+            bgcolor[24]=3;
+            bgcolor[39]=3;
+            if(modald7)
+            {   
+                modald7=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[10]&&c[25]&&c[40]&&c[55]&&c[70])//alibi
+        {
+            bgcolor[10]=3;
+            bgcolor[25]=3;
+            bgcolor[40]=3;
+            bgcolor[55]=3;
+            bgcolor[70]=3;
+
+            if(modald8)
+            {   
+                modald8=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[11]&&c[26]&&c[41]&&c[56]&&c[71])//manoj
+        {
+            bgcolor[11]=3;
+            bgcolor[26]=3;
+            bgcolor[41]=3;
+            bgcolor[56]=3;
+            bgcolor[71]=3;
+
+            if(modald9)
+            {   
+                modald9=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[14]&&c[29]&&c[44]&&c[59]&&c[74]&&c[89]&&c[104]&&c[119])//scenario
+        {
+            bgcolor[14]=3;
+            bgcolor[29]=3;
+            bgcolor[44]=3;
+            bgcolor[59]=3;
+            bgcolor[74]=3;
+            bgcolor[89]=3;
+            bgcolor[104]=3;
+            bgcolor[119]=3;
+            if(modald10)
+            {   
+                modald10=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[35]&&c[50]&&c[65]&&c[80]&&c[95]&&c[110]&&c[125]&&c[140]&&c[155]&&c[170]&&c[185]&&c[200]&&c[215])//angrignonparc
+        {
+            bgcolor[35]=3;
+            bgcolor[50]=3;
+            bgcolor[65]=3;
+            bgcolor[80]=3;
+            bgcolor[95]=3;
+            bgcolor[110]=3;
+            bgcolor[125]=3;
+            bgcolor[140]=3;
+            bgcolor[155]=3;
+            bgcolor[170]=3;
+            bgcolor[185]=3;
+            bgcolor[200]=3;
+            bgcolor[215]=3;
+            if(modald11)
+            {   
+                modald11=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[38]&&c[53])//il
+        {
+            bgcolor[38]=3;
+            bgcolor[53]=3;
+            
+            if(modald12)
+            {   
+                modald12=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[46]&&c[61]&&c[76])//ice
+        {
+            bgcolor[46]=3;
+            bgcolor[61]=3;
+            bgcolor[76]=3;
+            if(modald13)
+            {   
+                modald13=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[63]&&c[78]&&c[93]&&c[108]&&c[123]&&c[138])//across
+        {
+            bgcolor[63]=3;
+            bgcolor[78]=3;
+            bgcolor[93]=3;
+            bgcolor[108]=3;
+            bgcolor[123]=3;
+            bgcolor[138]=3;
+
+            if(modald14)
+            {   
+                modald14=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[69]&&c[84])//il
+        {
+            bgcolor[69]=3;
+            bgcolor[84]=3;
+            
+            if(modald15)
+            {   
+                modald15=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+        if(c[82]&&c[97]&&c[112]&&c[127]&&c[142]&&c[157]&&c[172]&&c[187])//steamiing
+        {
+            bgcolor[82]=3;
+            bgcolor[97]=3;
+            bgcolor[112]=3;
+            bgcolor[127]=3;
+            bgcolor[142]=3;
+            bgcolor[157]=3;
+            bgcolor[172]=3;
+            bgcolor[187]=3;
+            if(modald16)
+            {   
+                modald16=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[88]&&c[103]&&c[118]&&c[133])//oxio
+        {
+            bgcolor[88]=3;
+            bgcolor[103]=3;
+            bgcolor[118]=3;
+            bgcolor[133]=3;
+            if(modald17)
+            {   
+                modald17=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[92]&&c[107]&&c[122])//ari
+        {
+            bgcolor[92]=3;
+            bgcolor[107]=3;
+            bgcolor[122]=3;
+            if(modald18)
+            {   
+                modald18=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[101]&&c[116]&&c[131]&&c[146]&&c[161]&&c[176]&&c[191]&&c[206]&&c[216])//boulevard
+        {
+            bgcolor[101]=3;
+            bgcolor[116]=3;
+            bgcolor[131]=3;
+            bgcolor[146]=3;
+            bgcolor[161]=3;
+            bgcolor[176]=3;
+            bgcolor[191]=3;
+            bgcolor[206]=3;
+            bgcolor[216]=3;
+            if(modald19)
+            {   
+                modald19=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+        if(c[105]&&c[120]&&c[135]&&c[150]&&c[165]&&c[180]&&c[195]&&c[210])//sixtysix
+        {
+            bgcolor[105]=3;
+            bgcolor[120]=3;
+            bgcolor[135]=3;
+            bgcolor[150]=3;
+            bgcolor[165]=3;
+            bgcolor[180]=3;
+            bgcolor[195]=3;
+            bgcolor[210]=3;
+            if(modald20)
+            {   
+                modald20=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[106]&&c[121]&&c[136]&&c[151])//trio
+        {
+            bgcolor[106]=3;
+            bgcolor[121]=3;
+            bgcolor[136]=3;
+            bgcolor[151]=3;
+            if(modald21)
+            {   
+                modald21=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[113]&&c[128]&&c[143])//arc
+        {
+            bgcolor[113]=3;
+            bgcolor[128]=3;
+            bgcolor[143]=3;
+            if(modald22)
+            {   
+                modald22=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[114]&&c[129]&&c[144])//meg
+        {
+            bgcolor[114]=3;
+            bgcolor[129]=3;
+            bgcolor[144]=3;
+            if(modald23)
+            {   
+                modald23=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+        
+        if(c[139]&&c[154]&&c[169]&&c[184]&&c[199]&&c[214])//proper
+        {
+            bgcolor[139]=3;
+            bgcolor[154]=3;
+            bgcolor[169]=3;
+            bgcolor[184]=3;
+            bgcolor[199]=3;
+            bgcolor[214]=3;
+
+            if(modald24)
+            {   
+                modald24=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[149]&&c[164]&&c[179]&&c[194])//dawa
+        {
+            bgcolor[149]=3;
+            bgcolor[164]=3;
+            bgcolor[179]=3;
+            bgcolor[194]=3;
+            if(modald25)
+            {   
+                modald25=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[152]&&c[167]&&c[182]&&c[197]&&c[212])//oscar
+        {
+            bgcolor[152]=3;
+            bgcolor[167]=3;
+            bgcolor[182]=3;
+            bgcolor[197]=3;
+            bgcolor[212]=3;
+
+            if(modald26)
+            {   
+                modald26=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[163]&&c[178]&&c[193]&&c[208]&&c[223])//oscar
+        {
+            bgcolor[163]=3;
+            bgcolor[178]=3;
+            bgcolor[193]=3;
+            bgcolor[208]=3;
+            bgcolor[223]=3;
+
+            if(modald27)
+            {   
+                modald27=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[168]&&c[183]&&c[198]&&c[213])//cuca
+        {
+            bgcolor[168]=3;
+            bgcolor[183]=3;
+            bgcolor[198]=3;
+            bgcolor[113]=3;
+            if(modald28)
+            {   
+                modald28=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[173]&&c[188])//gu
+        {
+            bgcolor[173]=3;
+            bgcolor[188]=3;
+            
+            if(modald29)
+            {   
+                modald29=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[174]&&c[189]&&c[204]&&c[219])//raya
+        {
+            bgcolor[174]=3;
+            bgcolor[189]=3;
+            bgcolor[204]=3;
+            bgcolor[219]=3;
+            if(modald30)
+            {   
+                modald30=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+
+        if(c[175]&&c[190]&&c[205]&&c[220])//raya
+        {
+            bgcolor[175]=3;
+            bgcolor[190]=3;
+            bgcolor[205]=3;
+            bgcolor[220]=3;
+            if(modald31)
+            {   
+                modald31=0;
+                var modal=document.getElementById("myModal");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                span.onclick= function(){
+                    modal.style.display="none";
+                    document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+        }
+    }
+
+
+    function colorbg(i,j)
+    {   
+        for(let k=0;k<sidelength;k++)
+            {
+                for(let l=0;l<sidelength;l++)
+                {
+                    if(bgcolor[k*sidelength+l]==2)
+                        bgcolor[k*sidelength+l]=0;
+                }
+            }
+        let p=currenti,q=currentj;
+        let startacross,endacross;
+        while(q!=1&&!dis[(p-1)*sidelength+q-2])
+            q--;
+        startacross=(p-1)*sidelength+q-1;
+        q=currentj;
+        while(q!=sidelength&&!dis[(p-1)*sidelength+q])
+            q++;
+        endacross=(p-1)*sidelength+q-1;
+        q=currentj;
+        let startdown, enddown;
+        while(p!=1&&!dis[(p-2)*sidelength+q-1])
+            p--;
+        startdown=(p-1)*sidelength+q-1;
+        p=currenti;
+        while(p!=sidelength&&!dis[(p)*sidelength+q-1])
+            p++;
+        enddown=(p-1)*sidelength+q-1;
+        p=currenti;
+        if(textdir==0)
+        {
+            for(let reset=startdown;reset<=enddown;)
+            {
+                if(bgcolor[reset]==2)
+                    bgcolor[reset]=0;
+                    
+                reset=reset+sidelength;
+            }
+            for(let shit=startacross;shit<=endacross;shit++)
+            {   
+                if(bgcolor[shit]==0)
+                    bgcolor[shit]=2;
+                //document.getElementsByClassName("button1")[shit].style.backgroundColor="gray";
+            }    
+        }
+        else
+        {
+            for(let reset=startacross;reset<=endacross;reset++)
+            {
+                if(bgcolor[reset]==2)
+                    bgcolor[reset]=0;
+            }
+            for(let shit=startdown;shit<=enddown;)
+            {
+                if(bgcolor[shit]==0)
+                    bgcolor[shit]=2;
+                //document.getElementsByClassName("button1")[shit].style.backgroundColor="gray";
+                shit=shit+sidelength;
+            }   
+            //document.getElementById("gray").innerHTML=+end;
+        }
+
+        for(let k=0;k<sidelength;k++)
+            {
+                for(let l=0;l<sidelength;l++)
+                {
+                    if(bgcolor[k*sidelength+l]==0)
+                        document.getElementsByClassName("button1")[k*sidelength+l].style.backgroundColor="white";
+                    else if(bgcolor[k*sidelength+l]==1)
+                        document.getElementsByClassName("button1")[k*sidelength+l].style.backgroundColor="black";
+                    else if(bgcolor[k*sidelength+l]==2)
+                        document.getElementsByClassName("button1")[k*sidelength+l].style.backgroundColor="gray";
+                    else if(bgcolor[k*sidelength+l]==3)
+                        document.getElementsByClassName("button1")[k*sidelength+l].style.backgroundColor="green";
+                }
+            }
+    }
+
+    function textrev(i,j)
+    {   
+        
+        if(currenti==i && currentj==j)
+        {
+        
+        if(timesclicked!=0)
+        {
+            if(textdir)
+                textdir=0;
+            else
+                textdir=1;
+        }
+        else    
+            timesclicked=1;
+        }
+
+        else
+        {
+            timesclicked=1;
+            currenti=i;
+            currentj=j;
+        }
+        //document.getElementById("textd").innerHTML="Text direction is:"+textdir;
+        colorbg(i,j);
+        acluehigh((i-1)*sidelength+j-1);
+
+    }
+
+    function myfunc(event,i,j)
+    {
+       
+        let p=i,q=j;
+
+        if(event.keyCode==8)
+        {
+            document.getElementsByClassName("button1")[(i-1)*sidelength+j-1].value="";
+            m[i-1][j-1]=event.keyCode;
+            
+            
+        if(textdir==0 && q!=1 && !dis[(p-1)*sidelength+q-2])
+        {   
+            document.getElementsByClassName("button1")[(i-1)*sidelength+j-2].focus();
+            acluehigh((i-1)*sidelength+j-2);
+        }
+        else if(textdir==1 && p!=1 && !dis[(p-2)*sidelength+q-1])
+        {
+            document.getElementsByClassName("button1")[(p-2)*sidelength+q-1].focus();
+            acluehigh((p-2)*sidelength+q-1);
+        }
+        }
+        else if(event.keyCode==37 && q!=1){
+            while(dis[(p-1)*sidelength+q-2]&&q!=1)
+            {
+                q--;
+            }
+            if(q!=1)
+            {
+                document.getElementsByClassName("button1")[(p-1)*sidelength+q-2].focus();
+                textdir=0;
+                acluehigh((p-1)*sidelength+q-2);
+                currenti=p;
+                currentj=q-1;
+            }
+            if(textdir)
+                textdir=0;
+        }
+        else if(event.keyCode==38 && p!=1){
+            while(dis[(p-2)*sidelength+q-1]&&p!=1)
+            {
+                p--;
+            }
+            if(p!=1)
+            {
+                document.getElementsByClassName("button1")[(p-2)*sidelength+q-1].focus();
+                textdir=1;
+                acluehigh((p-2)*sidelength+q-1);
+                currenti=p-1;
+                currentj=q;
+            }
+            if(!textdir)
+                textdir=1;
+        }
+        else if(event.keyCode==39 && q!=sidelength){
+            while(dis[(p-1)*sidelength+q]&&q!=sidelength)
+            {
+                q++;
+            }
+            if(q!=sidelength)
+            {
+                document.getElementsByClassName("button1")[(p-1)*sidelength+q].focus();
+                textdir=0;
+                acluehigh((p-1)*sidelength+q);
+                currenti=p;
+                currentj=q+1;
+            }
+            if(textdir)
+                textdir=0;
+        }
+        else if(event.keyCode==40 && p!=sidelength){
+            while(dis[(p)*sidelength+q-1]&&p!=sidelength)
+            {
+                p++;
+            }
+            if(p!=sidelength)
+            {
+                document.getElementsByClassName("button1")[(p)*sidelength+q-1].focus();
+                textdir=1;
+                acluehigh((p)*sidelength+q-1);
+                currenti=p+1;
+                currentj=q;
+            }
+            if(!textdir)
+                textdir=1;
+        }
+        else if(event.keyCode==16)
+        {
+            if(textdir)
+                textdir=0;
+            else
+                textdir=1;
+            currenti=i;
+            currentj=j;
+            acluehigh((i-1)*sidelength+j-1);
+        }
+        else if(event.keyCode!=37 && event.keyCode!=38 && event.keyCode!=39 && event.keyCode!=40 && event.keyCode!=16)
+        {
+        
+        m[i-1][j-1]=event.keyCode;       
+        document.getElementsByClassName("button1")[(i-1)*sidelength+j-1].value=String.fromCharCode(m[i-1][j-1]);
+        
+        var ind=(i-1)*sidelength+j-1;
+        if(textdir==0)
+        {   
+            let u=0;    
+            for(;u<32;u++)
+            {
+                if(ind<=acrosswords[u].endi && ind>=acrosswords[u].starti)
+                {
+                    break;
+                }
+            }
+            //document.getElementById("demo").innerHTML=""+u;
+            if(u!=32)
+            {
+                if(ind!=acrosswords[u].endi)
+                {
+                    document.getElementsByClassName("button1")[ind+1].focus();
+                    acluehigh(ind+1);
+                    currenti=Math.trunc((ind+1)/sidelength)+1;
+                    currentj=((ind+1)%sidelength)+1;
+                }
+                else if(u!=31)
+                {
+                    ind=acrosswords[u+1].starti;
+                    document.getElementsByClassName("button1")[ind].focus();
+                    acluehigh(ind);
+                    currenti=Math.trunc(ind/sidelength)+1;
+                    currentj=(ind%sidelength)+1;
+                }
+            }
+        }
+
+        else
+        {
+            let u=0;
+            for(;u<31;u++)//reset previously highlighted clues
+            {
+                if((i%sidelength)==((downwords[u].starti)%15)&&((Math.trunc(i/sidelength))>=Math.trunc((downwords[u].starti)/15))&&((Math.trunc(i/sidelength))<=Math.trunc((downwords[u].endi)/15)))
+                {
+                    break;
+                }
+            }
+            if(u!=31)
+            {
+
+            }
+
+        }    
+        
+       
+        }
+        
+        p=i;q=j;
+        //currenti=i;currentj=j;
+        check();
+        colorbg(i,j);
+        
+
+    }
+</script>
+
+</body>
+</html>
