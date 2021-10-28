@@ -85,7 +85,10 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
+  width: 60%;
+  height: 75%;
+  overflow: auto;
+
 }
 
 /* The Close Button */
@@ -226,7 +229,7 @@ body {
     <p class="acluetext" onclick="ahighl(21)">39. Your department (4+6) </p>
     <p class="acluetext" onclick="ahighl(22)">42. #Me__ (3) </p>
     <p class="acluetext" onclick="ahighl(23)">44. Right now (2) </p>
-    <p class="acluetext" onclick="ahighl(24)">45. Your friend, who's voice I may or may not have mocked (4)</p>
+    <p class="acluetext" onclick="ahighl(24)">45. Your friend, whose voice I may or may not have mocked (4)</p>
     <p class="acluetext" onclick="ahighl(25)">47. What you've been working on for a long time (7+6)</p>
     <p class="acluetext" onclick="ahighl(26)">52. Concordia Undergraduate Psychology Association (4)</p>
     <p class="acluetext" onclick="ahighl(27)">53. A green fruit (5)</p>
@@ -286,11 +289,56 @@ body {
 <input class="button1 button2" disabled /><input  onkeyup="myfunc(event,3,2)" onclick="textrev(3,2)" class="button1" id="l6" maxlength="1"/><input  onkeyup="myfunc(event,3,3)" onclick="textrev(3,3)" class="button1" id="l7" maxlength="1"/> -->
 <!-- <button class="button1" type="text" id="l4" maxlength="1"></button><button class="button1" type="text" id="l5" maxlength="1"></button> -->
 
-<div id="myModal" class="modal">
+<div id="mac" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="close">×</span>
+      <center>
+      <h1>You got it!</h1>
+      <p>Remember the geese and their ducklings? All those little flowers on the ground...</p>
+      <img src="pics/mac1.JPG" alt="PP+CR7" width="500" height="280">
+      <br>
+      <p>..and that nice little spot under the tree! And me running around to find a toilet! </p>
+      <img src="pics/mac2.JPG" alt="PP+CR7" width="500" height="280">
+      </center> 
+    </div>
+  
+  </div>
+  <div id="pi" class="modal"> 
+    <!-- id is 1 -->
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">×</span>
+    <center>
+    <h1>You got it!</h1>
+    <p>You better not forget all those interesting facts about Pi that I talked about that day!</p>
+    <img src="pics/pi.jpg" alt="PP+CR7" width="340" height="470">
+    </center> 
+  </div>
+
+</div>
+
+<div id="maple" class="modal">
+
+    <!-- Modal content id is 2-->
+    <div class="modal-content">
+      <span class="close">×</span>
+      <center>
+      <h1>You got it!</h1>
+      <p>You dropped your mask, Cathy...</p>
+      <img src="pics/maple.JPG" alt="PP+CR7" width="260" height="470">
+      </center> 
+    </div>
+  
+  </div>
+
+  <div class="modal">
+
+    <!-- Modal content id 3-->
+    <div class="modal-content">
+      <span class="close">×</span>
       <center>
       <h1>You got it!</h1>
       <p>You got it!</p>
@@ -299,7 +347,6 @@ body {
     </div>
   
   </div>
-
   <div class="modal">
 
     <!-- Modal content -->
@@ -748,9 +795,9 @@ body {
     a[14][14]=71;
 
 
-    var modala1=0;//macdonaldcampus
+    var modala1=1;//macdonaldcampus
     var modala2=0;//aus
-    var modala3=0;//pi
+    var modala3=1;//pi
     var modala4=0;//ola
     var modala5=0;//ac
     var modala6=0;//norah biting me
@@ -781,7 +828,7 @@ body {
     var modala31=0;//xerarch
     var modala32=0;//balding
 
-    var modald1=0;//maple;
+    var modald1=1;//maple;
     var modald2=0;//candy
     var modald3=0;//duo
     var modald4=0;//osr
@@ -943,8 +990,8 @@ body {
             if(modala3)
             {   
                 modala3=0;
-                var modal=document.getElementById("myModal");
-                var span=document.getElementsByClassName("close")[0];
+                var modal=document.getElementsByClassName("modal")[1]
+                var span=document.getElementsByClassName("close")[1];
                 modal.style.display="block";
                 span.onclick= function(){
                     modal.style.display="none";
@@ -1764,8 +1811,8 @@ body {
             if(modald1)
             {   
                 modald1=0;
-                var modal=document.getElementById("myModal");
-                var span=document.getElementsByClassName("close")[0];
+                var modal=document.getElementsByClassName("modal")[2]
+                var span=document.getElementsByClassName("close")[2];
                 modal.style.display="block";
                 span.onclick= function(){
                     modal.style.display="none";
