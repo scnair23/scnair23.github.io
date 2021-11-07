@@ -470,13 +470,27 @@ body {
 
   <div class="modal">
 
+    <!-- Modal content id 12 -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <center>
+      <h1>You got it!</h1>
+      <p>The opposite of live. What a brilliant joke! You better be laughing...</p>
+      <img src="pics/evil.jpg" alt="PP+CR7" width="350" height="450">
+      </center> 
+    </div>
+  
+  </div>
+
+  <div class="modal">
+
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
       <center>
       <h1>You have it!</h1>
       <p>You got it!</p>
-      <img src="image.jpeg" alt="PP+CR7" width="250" height="250">
+      <img src="image.jpeg" alt="PP+CR7" width="350" height="450">
       </center> 
     </div>
   
@@ -981,7 +995,7 @@ body {
     var modald28=0;//cuca
     var modald29=0;//gu
     var modald30=0;//raya
-    var modald31=0;//evil
+    var modald31=1;//evil
 
 
     var timesclicked=0;
@@ -2717,7 +2731,7 @@ body {
             }
         }
 
-        if(c[175]&&c[190]&&c[205]&&c[220])//raya
+        if(c[175]&&c[190]&&c[205]&&c[220])//evil
         {
             bgcolor[175]=3;
             bgcolor[190]=3;
@@ -2726,8 +2740,8 @@ body {
             if(modald31)
             {   
                 modald31=0;
-                var modal=document.getElementById("myModal");
-                var span=document.getElementsByClassName("close")[0];
+                var modal=document.getElementsByClassName("modal")[12];
+                var span=document.getElementsByClassName("close")[12];
                 modal.style.display="block";
                 span.onclick= function(){
                     modal.style.display="none";
