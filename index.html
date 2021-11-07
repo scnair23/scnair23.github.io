@@ -443,8 +443,26 @@ body {
       <span class="close">&times;</span>
       <center>
       <h1>You got it!</h1>
+      <img src="pics/ice1.JPG" alt="PP+CR7" width="500" height="280">
       <p>Someone's enjoying their delicious dessert...</p>
       <img src="pics/ice.JPG" alt="PP+CR7" width="280" height="500">
+      </center> 
+    </div>
+  
+  </div>
+
+  <div class="modal">
+
+    <!-- Modal content id is 11 -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <center>
+      <h1>You got it!</h1>
+      <p>Some pics of us...</p>
+      <img src="pics/st1.jpeg" alt="PP+CR7" width="400" height="400">
+      <br/>
+      <img src="pics/st2.jpg" alt="PP+CR7" width="350" height="450">
+      <img src="pics/st3.jpg" alt="PP+CR7" width="337" height="450">
       </center> 
     </div>
   
@@ -914,7 +932,7 @@ body {
     var modala12=0;//or
     var modala13=0;//artist
     var modala14=1;//ebixi
-    var modala15=0;//strongteam
+    var modala15=1;//strongteam
     var modala16=0;//olio
     var modala17=0;//iris
     var modala18=0;//are
@@ -1433,8 +1451,8 @@ body {
             if(modala15)
             {   
                 modala15=0;
-                var modal=document.getElementById("myModal");
-                var span=document.getElementsByClassName("close")[0];
+                var modal=document.getElementsByClassName("modal")[11];
+                var span=document.getElementsByClassName("close")[11];
                 modal.style.display="block";
                 span.onclick= function(){
                     modal.style.display="none";
