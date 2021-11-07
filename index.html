@@ -392,6 +392,22 @@ body {
   
   </div>
 
+  <div id="mac" class="modal">
+
+    <!-- Modal content id is 7-->
+    <div class="modal-content">
+      <span class="close">×</span>
+      <center>
+      <h1>You got it!</h1>
+      <p>Hard at work!</p>
+      <img src="pics/ang1.jpeg" alt="PP+CR7" width="500" height="280">
+      <br>
+      <p>..and do you see the killer? </p>
+      <img src="pics/ang2.jpeg" alt="PP+CR7" width="500" height="280">
+      </center> 
+    </div>
+  
+  </div>
   <div class="modal">
 
     <!-- Modal content -->
@@ -899,7 +915,7 @@ body {
     var modald8=0;//alibi
     var modald9=0;//manoj
     var modald10=1;//scenario
-    var modald11=0;//angrignonparc
+    var modald11=1;//angrignonparc
     var modald12=0;//il
     var modald13=0;//ice
     var modald14=0;//across
@@ -2148,8 +2164,8 @@ body {
             if(modald11)
             {   
                 modald11=0;
-                var modal=document.getElementById("myModal");
-                var span=document.getElementsByClassName("close")[0];
+                var modal=document.getElementsByClassName("modal")[7];
+                var span=document.getElementsByClassName("close")[7];
                 modal.style.display="block";
                 span.onclick= function(){
                     modal.style.display="none";
