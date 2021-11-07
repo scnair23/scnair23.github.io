@@ -438,6 +438,20 @@ body {
 
   <div class="modal">
 
+    <!-- Modal content id is 10 -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <center>
+      <h1>You got it!</h1>
+      <p>Someone's enjoying their delicious dessert...</p>
+      <img src="pics/ice.JPG" alt="PP+CR7" width="270" height="430">
+      </center> 
+    </div>
+  
+  </div>
+
+  <div class="modal">
+
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -931,7 +945,7 @@ body {
     var modald10=1;//scenario
     var modald11=1;//angrignonparc
     var modald12=0;//il
-    var modald13=0;//ice
+    var modald13=1;//ice
     var modald14=0;//across
     var modald15=0;//by
     var modald16=0;//steaming
@@ -2226,8 +2240,8 @@ body {
             if(modald13)
             {   
                 modald13=0;
-                var modal=document.getElementById("myModal");
-                var span=document.getElementsByClassName("close")[0];
+                var modal=document.getElementsByClassName("modal")[10];
+                var span=document.getElementsByClassName("close")[10];
                 modal.style.display="block";
                 span.onclick= function(){
                     modal.style.display="none";
