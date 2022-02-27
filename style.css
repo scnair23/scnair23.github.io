@@ -1,0 +1,28 @@
+body{
+    padding-top: 25px;
+}
+.main{
+    margin: auto;
+    font-size: 20px;
+    width: 65%;
+}
+.container{
+    /* background-color: beige; */
+    flex: 2;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    /* align-items: center; */
+}
+.header {
+    /* background-color: cadetblue; */
+    display: flex;
+    
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+.header img{
+    flex: 0.75;
+    border-radius: 50%;
+}
