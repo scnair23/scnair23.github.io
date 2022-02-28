@@ -8,10 +8,11 @@ body{
 }
 h1{
     font-size: 4vw;
+    
 }
 .container{
     /* background-color: beige; */
-    flex: 2;
+    flex: 1;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
@@ -26,6 +27,6 @@ h1{
     align-items: center;
 }
 .header img{
-    flex: 0.75;
+    flex: 1;
     border-radius: 50%;
 }
