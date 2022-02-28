@@ -3,8 +3,11 @@ body{
 }
 .main{
     margin: auto;
-    font-size: 20px;
     width: 65%;
+    font-size: 1.35vw;
+}
+h1{
+    font-size: 4vw;
 }
 .container{
     /* background-color: beige; */
