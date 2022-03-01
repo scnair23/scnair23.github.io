@@ -14,6 +14,9 @@ h1{
     
 }
 
+h1.hdr2{
+    display: none;
+}
 
 
 .container{
@@ -21,7 +24,7 @@ h1{
     /* width: 400px; */
     display: flex;
     flex-basis: 400px;
-    flex-grow: 1;
+    flex-grow: 1.25;
     flex-flow: column wrap;
     justify-content: center;
     /* align-items: center; */
@@ -53,7 +56,7 @@ h1{
     display: flex;
     
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 .header img{
@@ -61,6 +64,28 @@ h1{
     border-radius: 50%;
 }
 
+@media only screen and (max-width: 1246px) {
+/* 1246 is when flex wrap is triggered */
+h1.hdr{
+    display:none
+}
+h1.hdr2{
+    display: block;
+}
+.header{
+    flex-direction: column-reverse;
+    justify-content: center;
+}
+.container{
+    flex-grow: 1;
+    justify-content: start;
+}
+.container2{
+    justify-content: start;
+    max-height: 325px;
+    max-width: 400px;
+}
+}
 @media only screen and (max-width: 601px) {
     .main{
         width: 80%;
@@ -73,6 +98,7 @@ h1{
     .container2{
         font-size: 14px;
     }
+ 
   }
 .container:nth-of-type(1){
 
