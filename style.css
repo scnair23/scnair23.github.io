@@ -9,7 +9,8 @@ body{
 }
 
 h1{
-    font-size: xx-large;
+    font-size: 50px;
+    text-align: center;
     
 }
 
@@ -43,7 +44,7 @@ h1{
 
 .container3{
     /* coordinates in mobile mode */
-    
+
 }
 .header {
     /* background-color: cadetblue; */
@@ -65,7 +66,7 @@ h1{
        
     }
     h1{
-        font-size: xx-large;
+        font-size: 44px;
     }
     .container2{
         font-size: 14px;
