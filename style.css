@@ -4,29 +4,73 @@ body{
 .main{
     margin: auto;
     width: 65%;
-    font-size: 1.35vw;
+    font-size: 20px;
+    /* background-color: antiquewhite; */
 }
+
 h1{
-    font-size: 4vw;
+    font-size: xx-large;
     
 }
+
+
+
 .container{
     /* background-color: beige; */
-    flex: 1;
+    /* width: 400px; */
     display: flex;
+    flex-basis: 400px;
     flex-flow: column wrap;
     justify-content: center;
     /* align-items: center; */
+}
+.container2{ /*container for my coordinates in desktop mode*/
+    /* background-color: beige; */
+    /* width: 400px; */
+    
+    display: flex;
+    flex-basis: 400px;
+    flex-flow: column wrap;
+    justify-content: center;
+    color:gray ;
+    align-content: center;
+    text-align: center; 
+    /* background-color: greenyellow; */
+    font-size:16px;
+     
+    /* align-items: center; */
+}
+
+.container3{
+    /* coordinates in mobile mode */
+    
 }
 .header {
     /* background-color: cadetblue; */
     display: flex;
     
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 .header img{
-    flex: 1;
+    width: 240px;
     border-radius: 50%;
+}
+
+@media only screen and (max-width: 601px) {
+    .main{
+        width: 80%;
+        font-size: 18px;
+       
+    }
+    h1{
+        font-size: xx-large;
+    }
+    .container2{
+        font-size: 14px;
+    }
+  }
+.container:nth-of-type(1){
+
 }
