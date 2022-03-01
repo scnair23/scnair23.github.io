@@ -21,6 +21,7 @@ h1{
     /* width: 400px; */
     display: flex;
     flex-basis: 400px;
+    flex-grow: 1;
     flex-flow: column wrap;
     justify-content: center;
     /* align-items: center; */
@@ -31,6 +32,7 @@ h1{
     
     display: flex;
     flex-basis: 400px;
+    flex-grow: 1;
     flex-flow: column wrap;
     justify-content: center;
     color:gray ;
