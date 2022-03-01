@@ -82,8 +82,8 @@ h1.hdr2{
 }
 .container2{
     justify-content: start;
-    max-height: 325px;
-    max-width: 400px;
+    /* max-height: 325px;
+    max-width: 400px; */
 }
 }
 @media only screen and (max-width: 601px) {
