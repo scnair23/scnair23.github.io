@@ -3,8 +3,10 @@ body{
 }
 .main{
     margin: auto;
-    width: 65%;
+    /* width: 65%; */
     font-size: 20px;
+    justify-content: center;
+    max-width: 800px;
     /* background-color: antiquewhite; */
 }
 
@@ -23,10 +25,12 @@ h1.hdr2{
     /* background-color: beige; */
     /* width: 400px; */
     display: flex;
-    flex-basis: 400px;
+    /* width: 400px; */
+    /* flex-basis: 350px; */
     flex-grow: 1.25;
     flex-flow: column wrap;
     justify-content: center;
+    /* max-height: 330px; */
     /* align-items: center; */
 }
 .container2{ /*container for my coordinates in desktop mode*/
@@ -34,7 +38,8 @@ h1.hdr2{
     /* width: 400px; */
     
     display: flex;
-    flex-basis: 400px;
+    /* width: 400px; */
+    /* flex-basis: 350px; */
     flex-grow: 1;
     flex-flow: column wrap;
     justify-content: center;
@@ -43,6 +48,7 @@ h1.hdr2{
     text-align: center; 
     /* background-color: greenyellow; */
     font-size:16px;
+    /* max-height: 200px; */
      
     /* align-items: center; */
 }
@@ -63,7 +69,14 @@ h1.hdr2{
     width: 240px;
     border-radius: 50%;
 }
-
+@media only screen and (min-width: 1246px){
+    .container{
+        flex-basis: 350px;
+    }
+    .container2{
+        flex-basis: 350px;
+    }
+}
 @media only screen and (max-width: 1246px) {
 /* 1246 is when flex wrap is triggered */
 h1.hdr{
@@ -79,11 +92,18 @@ h1.hdr2{
 .container{
     flex-grow: 1;
     justify-content: start;
+    display: block;
+    height: auto;
 }
 .container2{
     justify-content: start;
+    display: block;
+    max-height: 350px;
     /* max-height: 325px;
     max-width: 400px; */
+}
+.main{
+    width: 80%;
 }
 }
 @media only screen and (max-width: 601px) {
