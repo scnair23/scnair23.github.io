@@ -4,6 +4,7 @@ body{
 .main{
     margin: auto;
     font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
     justify-content: center;
     max-width: 800px;
 }

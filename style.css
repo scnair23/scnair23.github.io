@@ -5,6 +5,8 @@ body{
     margin: auto;
     /* width: 65%; */
     font-size: 20px;
+    /* font-family: 'Raleway', sans-serif; */
+    font-family: 'Source Sans Pro', sans-serif;
     justify-content: center;
     max-width: 800px;
     /* background-color: antiquewhite; */
