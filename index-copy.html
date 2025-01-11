@@ -144,6 +144,9 @@
 .current_clue{
     background-color: rgba(255,255,255,0.2);
     text-align: left;
+    text-wrap: wrap;
+    width: 450px;
+    height: 50px;
 }
 
 .cluesbg{
@@ -191,16 +194,9 @@ body {
     <br/>
     <p>Text direction is: </p><p id="textd"></p>
     <br/> -->
-    <!-- <p id="demo">hello</p>
-    <br/>
-    <p>Status is:</p><p id="status"></p>
-    <br/>
-    <p id="keyp">Key pressed  is:</p>
-    <p id="textd">Text direction is:</p>
-    <p id="gray"></p> -->
     <div class="grid-container">
        <center><div class="crossword">
-        <div class="current_clue">Across clue:</div>
+        <div class="current_clue"></div>
         <br/>
         <input onkeyup="myfunc(event,1,1)" onclick="textrev(1,1)" class="button1" maxlength="1" /><span class="cluenumber">1</span><input  onkeyup="myfunc(event,1,2)" onclick="textrev(1,2)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,3)" onclick="textrev(1,3)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,4)" onclick="textrev(1,4)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,5)" onclick="textrev(1,5)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,6)" onclick="textrev(1,6)" class="button1" maxlength="1"/><span class="cluenumber">2</span><input onkeyup="myfunc(event,1,7)" onclick="textrev(1,7)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,8)" onclick="textrev(1,8)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,9)" onclick="textrev(1,9)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,10)" onclick="textrev(1,10)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,11)" onclick="textrev(1,11)" class="button1" maxlength="1"/><input onkeyup="myfunc(event,1,12)" onclick="textrev(1,12)" class="button1" maxlength="1"/><span class="cluenumber">3</span><input onkeyup="myfunc(event,1,13)" onclick="textrev(1,13)" class="button1" maxlength="1"/>
     
@@ -238,14 +234,14 @@ body {
 <center>
 <div class="clues">
     
-    <p class="acluetext" onclick="ahighl(1)">1. Where we spent an idyllic shitty day (15)</p> 
-    <p class="acluetext" onclick="ahighl(2)">11. Short for one of the countries Down Under (3)</p>
-    <p class="acluetext" onclick="ahighl(3)">12. Remember the physics problem I keep talking about? The one with colliding blocks and a wall? The mathematical constant that is related to this (2) </p>
-    <p class="acluetext" onclick="ahighl(4)">13. A cab service in India (3)</p>
-    <p class="acluetext" onclick="ahighl(5)">14. Something that keeps you cool in the summer (2)</p>
-    <p class="acluetext" onclick="ahighl(6)">15. This adorable 19-month child from Montreal who loves pizza, is biting me instead. So if you were to describe this situation, you would say you saw __ __ __ (5+6+2)</p>
-    <p class="acluetext" onclick="ahighl(7)">18. A cover for a container (3) </p>
-    <p class="acluetext" onclick="ahighl(8)">20. I received a mug on this occasion (4) </p>
+    <p class="acluetext" onclick="ahighl(1)">1. A beautiful preschool where Frida and Chutney once met (6+7)</p> 
+    <p class="acluetext" onclick="ahighl(2)">4. Can use these to brush your teeth (4)</p>
+    <p class="acluetext" onclick="ahighl(3)">5. A rule of a science teacher, not to be broken (5)</p>
+    <p class="acluetext" onclick="ahighl(4)">9. Prakash Bhaiya, science lab, paani ki katori...BOOM! (6)</p>
+    <p class="acluetext" onclick="ahighl(5)">11. Courtney, Ming and Orion accidentally released captives of this island (7)</p>
+    <p class="acluetext" onclick="ahighl(6)">13. No. of beads in first row when expressing 13 in code of 5 (5)</p>
+    <p class="acluetext" onclick="ahighl(7)">15. Favourite climbing spot near MIS. Also a book (6)</p>
+    <p class="acluetext" onclick="ahighl(8)">16. Where 7. (down) is located (5)</p>
 </div>
 </center>    
 </div>
@@ -254,15 +250,15 @@ body {
 <center>
 <div class="clues">
     
-    <p class="acluetext" onclick="dhighl(1)">1. A symbol of Canada as well as you (5)</p> 
-    <p class="acluetext" onclick="dhighl(2)">2. Reese's, Kitkat, Nerds, for eg. (5) </p>
-    <p class="acluetext" onclick="dhighl(3)">3. What we used for video calls over the summer (3) </p>
-    <p class="acluetext" onclick="dhighl(4)">4. Ontario School Record, or Office of Sponsored Research, for eg. (3) </p>
-    <p class="acluetext" onclick="dhighl(5)">5. Someone who makes aphorisms (8) </p>
-    <p class="acluetext" onclick="dhighl(6)">6. What would you call BANQ, Benny, etc. (4) </p>
-    <p class="acluetext" onclick="dhighl(7)">7. A small and light bed, also a mathematical function (3) </p>
-    <p class="acluetext" onclick="dhighl(8)">8. Proof that she was not there during the crime (5)</p>
-    <p class="acluetext" onclick="dhighl(9)">9. Actor in Family Man (5) </p>   </div>
+    <p class="acluetext" onclick="dhighl(1)">1. Golfer's email (12)</p> 
+    <p class="acluetext" onclick="dhighl(2)">2. Gate-greeter and reptile-keeper (3+3)</p>
+    <p class="acluetext" onclick="dhighl(3)">3. Start of the 10-year journey, 12 for some (3)</p>
+    <p class="acluetext" onclick="dhighl(4)">6. Pervez Musharraf can run around Mirambika in 16mins while Manmohan Singh takes 10mins. If both of them start from the statue and run in the same direction, after how long will they first meet at the statue again? (6)</p>
+    <p class="acluetext" onclick="dhighl(5)">7. Fast-food chain visited exactly 16 years ago (almost to the date) (5+3) </p>
+    <p class="acluetext" onclick="dhighl(6)">8. 9th year of journey (8)</p>
+    <p class="acluetext" onclick="dhighl(7)">10. (5) </p>
+    <p class="acluetext" onclick="dhighl(8)">12. (5)</p>
+    <p class="acluetext" onclick="dhighl(9)">14. (3) </p>   </div>
 </center>    
 </div>
 
@@ -357,6 +353,7 @@ body {
 
                  }
                  var y=document.getElementsByClassName("acluetext")[u];
+                 document.getElementsByClassName("current_clue")[0].innerHTML="(across) "+y.innerHTML;
                 //y.scrollIntoView();
                 //document.getElementsByClassName("button1")[acrosswords[u].starti].scrollIntoView();//to scroll to the starting of the word in the crossword and not focus onto the cluetext             
                 y.style.backgroundColor="rgb(214, 231, 255)";
@@ -376,6 +373,7 @@ body {
                        x.style.backgroundColor="white";
                      }
                      var y=document.getElementsByClassName("acluetext")[u+8];
+                     document.getElementsByClassName("current_clue")[0].innerHTML="(down) "+y.innerHTML;
                      //y.scrollIntoView();
                      //document.getElementsByClassName("button1")[downwords[u].starti].scrollIntoView();//to scroll to the starting of the word in the crossword and not focus onto the cluetext
                     y.style.backgroundColor="rgb(214, 231, 255)";
@@ -398,6 +396,7 @@ body {
 
         var x=document.getElementsByClassName("acluetext")[i-1];
         x.style.backgroundColor="rgb(214, 231, 255)";
+        document.getElementsByClassName("current_clue")[0].innerHTML="(across) "+x.innerHTML;
         p=acrosswords[i-1].starti;
         q=acrosswords[i-1].endi;
         document.getElementsByClassName("button1")[p].focus();
@@ -423,6 +422,7 @@ body {
 
         var x=document.getElementsByClassName("acluetext")[i+7];
         x.style.backgroundColor="rgb(214, 231, 255)";
+        document.getElementsByClassName("current_clue")[0].innerHTML="(down) "+x.innerHTML;
         p=downwords[i-1].starti;
         q=downwords[i-1].endi;
         document.getElementsByClassName("button1")[p].focus();
@@ -1051,9 +1051,9 @@ body {
             currentj=j;
         }
         //document.getElementById("textd").innerHTML="Text direction is:"+textdir;
-        // var textd_string=textdir.toString();
-        // textd_string=textd_string.concat("(",i.toString(),",",j.toString(),")","(",currenti.toString(),",",currentj.toString(),")");
-        // document.getElementById("textd").innerHTML=textd_string;
+        //var textd_string=textdir.toString();
+        //textd_string=textd_string.concat("(",i.toString(),",",j.toString(),")","(",currenti.toString(),",",currentj.toString(),")");
+        //document.getElementById("textd").innerHTML=textd_string;
         colorbg(i,j);
         acluehigh((i-1)*sidelength+j-1);
 
@@ -1263,7 +1263,7 @@ body {
         p=i;q=j;
         //currenti=i;currentj=j;
         check();
-        colorbg(i,j);
+        colorbg(currenti,currentj);
         
 
     }
