@@ -18,9 +18,13 @@
         color: black;
         text-align: center;
         display: inline-block;
-       
-        width: 25px;
+        
+        width: auto;
         height: 25px;
+        max-width: 25px;
+        min-width: 20px;
+        min-height: 20px;
+        max-height: 25px;
         cursor: pointer;
         position:relative;
         vertical-align: top;
@@ -33,8 +37,14 @@
         color: black;
         text-align: center;
         display: inline-block;
-        width: 25px;
+        /* width: 7%; */
+        /* height: 7%; */
+        width: auto;
         height: 25px;
+        max-width: 25px;
+        min-width: 20px;
+        min-height: 20px;
+        max-height: 25px;
         cursor: context-menu;
     }
     .button3{
@@ -43,8 +53,10 @@
         color: black;
         text-align: center;
         display: inline-block;
-        width: 20px;
-        height: 20px;
+        max-width: 25px;
+        min-width: 20px;
+        min-height: 20px;
+        max-height: 25px;
         cursor: context-menu;
     }
 
@@ -107,10 +119,14 @@
 }
 
 .grid-container{
-    display: grid;
-    grid-template-columns: 500px auto auto ;
-    grid-gap: 10px;
-    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width:fit-content;
+    min-width: 410px;
+    /* grid-template-columns: 500px auto auto ; */
+    /* grid-gap: 10px; */
+    padding: 20px;
     background-color: beige;
 
     /* position: relative; */
@@ -122,6 +138,7 @@
 .crossword{
     grid-column: 1/2;
     position: relative;
+    min-width: 400px;
 }
 
 .current_clue{
