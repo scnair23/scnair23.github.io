@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Crossword</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,11 +19,11 @@
         text-align: center;
         display: inline-block;
         
-        width: auto;
+        width: 25;
         height: 25px;
         max-width: 25px;
-        min-width: 20px;
-        min-height: 20px;
+        min-width: 15px;
+        min-height: 15px;
         max-height: 25px;
         cursor: pointer;
         position:relative;
@@ -39,15 +39,15 @@
         display: inline-block;
         /* width: 7%; */
         /* height: 7%; */
-        width: auto;
+        width: 25px;
         height: 25px;
         max-width: 25px;
-        min-width: 20px;
-        min-height: 20px;
+        min-width: 15px;
+        min-height: 15px;
         max-height: 25px;
         cursor: context-menu;
     }
-    .button3{
+    /* .button3{
         border: 1px solid black;
         background-color: green;    
         color: black;
@@ -58,7 +58,7 @@
         min-height: 20px;
         max-height: 25px;
         cursor: context-menu;
-    }
+    } */
 
     .cluenumber{
     position: relative;
@@ -123,7 +123,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     width:fit-content;
-    min-width: 410px;
+    min-width: 430px;
     /* grid-template-columns: 500px auto auto ; */
     /* grid-gap: 10px; */
     padding: 20px;
@@ -138,7 +138,7 @@
 .crossword{
     grid-column: 1/2;
     position: relative;
-    min-width: 400px;
+    min-width: 420px;
 }
 
 .current_clue{
@@ -168,6 +168,7 @@
 body {
         font-family: "Roboto", sans-serif;
         float:left;
+        min-width: 600px;
 
       }
       .success { background-color: #ccffcc;}
