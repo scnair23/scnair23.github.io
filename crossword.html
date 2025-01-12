@@ -84,8 +84,8 @@
   padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  width:100%; /*100%; Full width */
+  height: 100%;/*100%;  Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(255, 254, 208, 0.4); /* Black w/ opacity */
@@ -97,8 +97,10 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 60%;
+  width: 40%;
   height: 75%;
+  min-width: 300px;
+  min-height: 400px;
   overflow: auto;
 
 }
@@ -146,7 +148,7 @@
     text-align: left;
     text-wrap: wrap;
     width: 450px;
-    height: 50px;
+    height: 60px;
 }
 
 .cluesbg{
@@ -238,8 +240,8 @@ body {
     <p class="acluetext" onclick="ahighl(2)">4. Can use these to brush your teeth (4)</p>
     <p class="acluetext" onclick="ahighl(3)">5. A rule of a science teacher, not to be broken (5)</p>
     <p class="acluetext" onclick="ahighl(4)">9. Prakash Bhaiya, science lab, paani ki katori...BOOM! (6)</p>
-    <p class="acluetext" onclick="ahighl(5)">11. Courtney, Ming and Orion accidentally released captives of this island (7)</p>
-    <p class="acluetext" onclick="ahighl(6)">13. No. of beads in first row when expressing 13 in code of 5 (5)</p>
+    <p class="acluetext" onclick="ahighl(5)">11. Courtney, Ming and Orion accidentally released <i><u>ghost</u></i> captives of this island (7)</p>
+    <p class="acluetext" onclick="ahighl(6)">13. No. of beads in the first row when expressing 13 in code of 5 (5)</p>
     <p class="acluetext" onclick="ahighl(7)">15. Favourite climbing spot near MIS. Also a book (6)</p>
     <p class="acluetext" onclick="ahighl(8)">16. Where 7. (down) is located (5)</p>
 </div>
@@ -252,13 +254,13 @@ body {
     
     <p class="acluetext" onclick="dhighl(1)">1. Golfer's email (12)</p> 
     <p class="acluetext" onclick="dhighl(2)">2. Gate-greeter and reptile-keeper (3+3)</p>
-    <p class="acluetext" onclick="dhighl(3)">3. Start of the 10-year journey, 12 for some (3)</p>
+    <p class="acluetext" onclick="dhighl(3)">3. The first of ten (twelve for some) (3)</p>
     <p class="acluetext" onclick="dhighl(4)">6. Pervez Musharraf can run around Mirambika in 16mins while Manmohan Singh takes 10mins. If both of them start from the statue and run in the same direction, after how long will they first meet at the statue again? (6)</p>
     <p class="acluetext" onclick="dhighl(5)">7. Fast-food chain visited exactly 16 years ago (almost to the date) (5+3) </p>
-    <p class="acluetext" onclick="dhighl(6)">8. 9th year of journey (8)</p>
-    <p class="acluetext" onclick="dhighl(7)">10. (5) </p>
-    <p class="acluetext" onclick="dhighl(8)">12. (5)</p>
-    <p class="acluetext" onclick="dhighl(9)">14. (3) </p>   </div>
+    <p class="acluetext" onclick="dhighl(6)">8. 9th year, as in 3. (down) (8)</p>
+    <p class="acluetext" onclick="dhighl(7)">10. Narrator of ghost stories during music workshop sleepovers (5) </p>
+    <p class="acluetext" onclick="dhighl(8)">12. Where many an act has been played; found between some woods and a field (5)</p>
+    <p class="acluetext" onclick="dhighl(9)">14. Triangular skylights give this place its name (<i>abbr.</i>) (3) </p>   </div>
 </center>    
 </div>
 
@@ -269,7 +271,7 @@ body {
 <br/>
 <input class="button1 button2" disabled /><input  onkeyup="myfunc(event,3,2)" onclick="textrev(3,2)" class="button1" id="l6" maxlength="1"/><input  onkeyup="myfunc(event,3,3)" onclick="textrev(3,3)" class="button1" id="l7" maxlength="1"/> -->
 <!-- <button class="button1" type="text" id="l4" maxlength="1"></button><button class="button1" type="text" id="l5" maxlength="1"></button> -->
-
+<center>
 <div id="mac" class="modal">
 
     <!-- Modal content -->
@@ -286,6 +288,7 @@ body {
     </div>
   
   </div>
+</center>
   
 
 
@@ -688,8 +691,53 @@ body {
     down.fill(0);
 
 
+    function checkCompletion()
+    {   let i=0;
+        let j=0;
+        loop1:
+         {
+            for(i=0;i<sidelength-1;i++)
+            {   
+                
+                for(j=0;j<sidelength;j++)
+                {
+                    if(a[i][j] && bgcolor[i][j]!=3)
+                        {
+                            break loop1;
+                        }
+                }
+                
+            }
+         }
+         if(i==(sidelength-1) && j==sidelength)//means crossword is complete
+         {
+            if(modala1)
+            {   
+                modala1=0;
+                var modal=document.getElementsByClassName("modal")[0];
+                var kbcmeme=document.getElementById("kbc");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                kbcmeme.play();
+                span.onclick= function(){
+                   modal.style.display="none";
+                   document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+            }
+
+         }
+        
+    }
+
     function check()
     {
+        let cnt=0;
         for(let i=0;i<sidelength;i++)
         {
             for(let j=0;j<sidelength;j++)
@@ -722,25 +770,27 @@ body {
             bgcolor[10]=3;
             bgcolor[11]=3;
             bgcolor[12]=3;
-            if(modala1)
-            {   
-                modala1=0;
-                var modal=document.getElementsByClassName("modal")[0];
-                var kbcmeme=document.getElementById("kbc");
-                var span=document.getElementsByClassName("close")[0];
-                modal.style.display="block";
-                kbcmeme.play();
-                span.onclick= function(){
-                   modal.style.display="none";
-                   document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
-                }
-                window.onclick=function(event){
-                    if(event.target==modal){
-                        modal.style.display="none";
-                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
-                    }
-                }
-            }
+
+            cnt++;
+            // if(modala1)
+            // {   
+            //     modala1=0;
+            //     var modal=document.getElementsByClassName("modal")[0];
+            //     var kbcmeme=document.getElementById("kbc");
+            //     var span=document.getElementsByClassName("close")[0];
+            //     modal.style.display="block";
+            //     kbcmeme.play();
+            //     span.onclick= function(){
+            //        modal.style.display="none";
+            //        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+            //     }
+            //     window.onclick=function(event){
+            //         if(event.target==modal){
+            //             modal.style.display="none";
+            //             document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+            //         }
+            //     }
+            // }
         }
         
 
@@ -750,6 +800,7 @@ body {
             bgcolor[27]=3;
             bgcolor[28]=3;
             bgcolor[29]=3;
+            cnt++;
             /* if(modala2)
             {   
                 modala2=0;
@@ -777,6 +828,7 @@ body {
             bgcolor[35]=3;
             bgcolor[36]=3;
             bgcolor[37]=3;
+            cnt++;
             /* if(modala3)
             {   
                 modala3=0;
@@ -805,6 +857,7 @@ body {
             bgcolor[68]=3;
             bgcolor[69]=3;
             bgcolor[70]=3;
+            cnt++;
             /* if(modala4)
             {   
                 modala4=0;
@@ -833,6 +886,7 @@ body {
             bgcolor[88]=3;
             bgcolor[89]=3;
             bgcolor[90]=3;
+            cnt++;
            
         }
 
@@ -843,6 +897,7 @@ body {
             bgcolor[111]=3;
             bgcolor[112]=3;
             bgcolor[113]=3;
+            cnt++;
             
         }
         if(c[132]&&c[133]&&c[134]&&c[135]&&c[136]&&c[137])//jungle
@@ -853,6 +908,7 @@ body {
             bgcolor[135]=3;
             bgcolor[136]=3;
             bgcolor[137]=3;
+            cnt++;
             
         }
         if(c[151]&&c[152]&&c[153]&&c[154]&&c[155])//pondy
@@ -862,6 +918,7 @@ body {
             bgcolor[153]=3;
             bgcolor[154]=3;
             bgcolor[155]=3;
+            cnt++;
             
         }
         
@@ -870,11 +927,13 @@ body {
             bgcolor[0]=3;
             bgcolor[13]=3;
             bgcolor[26]=3;bgcolor[39]=3;bgcolor[52]=3;bgcolor[65]=3;bgcolor[78]=3;bgcolor[91]=3;bgcolor[104]=3;bgcolor[117]=3;bgcolor[130]=3;bgcolor[143]=3;
+            cnt++;
         }
         
         if(c[5]&&c[18]&&c[31]&&c[44]&&c[57]&&c[70])//ramram
         {
             bgcolor[5]=3;bgcolor[18]=3;bgcolor[31]=3;bgcolor[44]=3;bgcolor[57]=3;bgcolor[70]=3;
+            cnt++;
         }
 
         if(c[11]&&c[24]&&c[37])//red
@@ -882,33 +941,39 @@ body {
             bgcolor[11]=3;
             bgcolor[24]=3;
             bgcolor[37]=3;
+            cnt++;
             
         }
         
         if(c[36]&&c[49]&&c[62]&&c[75]&&c[88]&&c[101])//eighty
         {
-            bgcol[36]=3;bgcol[49]=3;bgcol[62]=3;bgcol[75]=3;bgcol[88]=3;bgcol[101]=3;
+            bgcolor[36]=3;bgcolor[49]=3;bgcolor[62]=3;bgcolor[75]=3;bgcolor[88]=3;bgcolor[101]=3;
+            cnt++;
         }
         
         if(c[55]&&c[68]&&c[81]&&c[94]&&c[107]&&c[120]&&c[133]&&c[146])//pizzahut
         {
             bgcolor[55]=3;bgcolor[68]=3;bgcolor[81]=3;bgcolor[94]=3;bgcolor[107]=3;bgcolor[120]=3;bgcolor[133]=3;bgcolor[146]=3;
+            cnt++;
         }
         
 
         if(c[64]&&c[77]&&c[90]&&c[103]&&c[116]&&c[129]&&c[142]&&c[155])//humility
         {
             bgcolor[64]=3;bgcolor[77]=3;bgcolor[90]=3;bgcolor[103]=3;bgcolor[116]=3;bgcolor[129]=3;bgcolor[142]=3;bgcolor[155]=3;
+            cnt++;
         }
 
         if(c[73]&&c[86]&&c[99]&&c[112]&&c[125])//baren
         {
             bgcolor[73]=3;bgcolor[86]=3;bgcolor[99]=3;bgcolor[112]=3;bgcolor[125]=3;
+            cnt++;
         }
 
         if(c[96]&&c[109]&&c[122]&&c[135]&&c[148])//stage
         {
             bgcolor[96]=3;bgcolor[109]=3;bgcolor[122]=3;bgcolor[135]=3;bgcolor[148]=3;
+            cnt++;
         }
 
 
@@ -917,9 +982,30 @@ body {
             bgcolor[110]=3;
             bgcolor[123]=3;
             bgcolor[136]=3;
+            cnt++;
             
         }
         
+        if(cnt==17)
+        {
+            var modal=document.getElementsByClassName("modal")[0];
+                var kbcmeme=document.getElementById("kbc");
+                var span=document.getElementsByClassName("close")[0];
+                modal.style.display="block";
+                kbcmeme.play();
+                span.onclick= function(){
+                   modal.style.display="none";
+                   document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                }
+                window.onclick=function(event){
+                    if(event.target==modal){
+                        modal.style.display="none";
+                        document.getElementsByClassName("button1")[(currenti-1)*sidelength+currentj-1].focus();
+                    }
+                }
+        }
+
+        //checkCompletion();
 
         
     }
